@@ -4,7 +4,6 @@ import { SWRConfig } from 'swr';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/theme';
-import client from '../utils/CustomAxios';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -19,12 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <RecoilRoot>
-      <SWRConfig
-        value={{
-          refreshInterval: 5000,
-          fetcher: (url: string) => client.get(url).then((res) => res.data)
-        }}
-      >
+      <SWRConfig>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Component {...pageProps} />
