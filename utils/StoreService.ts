@@ -1,21 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-
-export interface StoreResponse {
-  id: number;
-  thumbnail: string;
-  store_name: string;
-  parking_info: string;
-  main_menu: string[];
-  address: string;
-  click_link: {
-    mango: string;
-    dining: string;
-  };
-  position: {
-    lat: number;
-    lng: number;
-  };
-}
+import { StoreResponse } from '../utils/types/index';
 
 class Store {
   async getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
