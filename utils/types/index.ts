@@ -10,7 +10,6 @@ export interface DecodedResponse {
 }
 
 export interface CurrentUser {
-  expiredTime: number;
   email: string;
   isLoggedIn: boolean;
 }
