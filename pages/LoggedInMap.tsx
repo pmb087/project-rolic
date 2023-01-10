@@ -1,31 +1,60 @@
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
 import StoreService from '../utils/StoreService';
-import { StoreResponse } from '../utils/types/index';
+import { StoreResponse, UserResponse } from '../utils/types/index';
 import styled from 'styled-components';
 import Image from 'next/image';
 import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
-import useScript from '../utils/hooks/useScript';
+import UserService from '../utils/UserService';
+import { useRecoilValue } from 'recoil';
+import { userInfoState } from '../utils/store';
+import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
+import useScript from '../utils/hooks/useScript';
 
 interface Props {
-  storeData: StoreResponse[];
+  storeResponse: StoreResponse[];
 }
 
-// 해당 페이지는 비로그인으로 지도에 접근했을 경우 제공되는 페이지
-// 따라서 사용자의 행동에 따른 서버 업데이트가 발생하는 경우는 없으며 그렇기에 StaticProps를 통해 빌드할 것
-// 물론 그에 따라서 SWR을 사용하는 이유는 없기 때문에 캐싱하지 않음
-//  ㄴ 정적 빌드 후 배포 한다면 애초에 페이지가 따로 생성되므로 캐싱할 필요가 없음.
-function Map({ storeData }: Props) {
+// 현재 로그인 한 유저의 정보를 얻기까지 했음,
+//
+// Todo
+// - 로그인 하지 않았음에도 접근 할 경우 Map으로 리다이렉트
+// - 로그인 정보를 이용한 가게 찜, 현재 로그인 한 유저 표시
+// - 찜 한 가게의 맵 마커 다르게 표시
+//
+// 이후에 할 일
+// - 마이 페이지 만들고 찜 한 가게 몰아보기
+// - 모든 계정들이 좋아요 한 가게의 통계 페이지
+// - 가게 추가 건의 페이지 (유저)
+// - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게)
+
+function LoggedInMap({ storeResponse }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
+  const route = useRouter();
+  const { email, isLoggedIn } = useRecoilValue(userInfoState);
   const [selectedId, setSelectedId] = useState(-1);
-  const selectedStore = storeData[selectedId - 1];
+  const selectedStore = storeResponse[selectedId - 1];
+  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+
+  const getUserInfo = async () => {
+    if (!isLoggedIn) return;
+    const userInfo = await UserService.getUser(email);
+    setCurrentUserInfo(userInfo.data);
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      route.push('/Map');
+      return;
+    }
+    getUserInfo();
+  }, []);
 
   useEffect(() => {
     const scriptSrc = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`;
-    useScript(scriptSrc, () => onLoadKakaoMap(storeData, setSelectedId));
-  }, [storeData]);
+    useScript(scriptSrc, () => onLoadKakaoMap(storeResponse, setSelectedId));
+  }, [storeResponse]);
 
   return (
     <MapPageContainer>
@@ -50,14 +79,15 @@ function Map({ storeData }: Props) {
   );
 }
 
-export default Map;
+export default LoggedInMap;
 
-export async function getStaticProps() {
-  const storeData = await StoreService.getAllStore().then((res) => res.data);
+export async function getServerSideProps() {
+  const storeRes = await StoreService.getAllStore();
+  const storeResponse = storeRes.data;
 
   return {
     props: {
-      storeData
+      storeResponse
     }
   };
 }

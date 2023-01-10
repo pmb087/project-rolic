@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const useScript = (url: string, onload: () => void) => {
-  useEffect(() => {
+  if (typeof document !== 'undefined') {
     const script = document.createElement('script');
 
     script.src = url;
@@ -10,11 +10,7 @@ const useScript = (url: string, onload: () => void) => {
     script.onload = onload;
 
     document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [url, onload]);
+  }
 };
 
 export default useScript;
