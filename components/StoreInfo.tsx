@@ -2,7 +2,7 @@ import Info from './Info';
 import ClickLink from './ClickLink';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { StoreResponse } from '../utils/StoreService';
+import { StoreResponse } from '../utils/types/index';
 
 interface Props {
   store: StoreResponse;
