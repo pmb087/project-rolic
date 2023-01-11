@@ -35,5 +35,5 @@ export interface UserResponse {
   id: string;
   name: string;
   picture_uri: string;
-  like_store: number[] | [];
+  like_store: number[];
 }
