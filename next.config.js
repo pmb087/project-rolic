@@ -6,7 +6,8 @@ const nextConfig = {
     domains: [
       's3.mangoplate.com',
       'mp-seoul-image-production-s3.mangoplate.com',
-      'img.siksinhot.com'
+      'img.siksinhot.com',
+      'lh3.googleusercontent.com'
     ]
   }
 };
