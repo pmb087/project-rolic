@@ -11,16 +11,13 @@ import { userInfoState } from '../utils/store';
 import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
+import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
+import UserInfo from '../components/UserInfo';
 
 interface Props {
   storeResponse: StoreResponse[];
 }
-
-// 현재 로그인 한 유저의 정보를 얻기까지 했음,
-//
 // Todo
-// - 로그인 하지 않았음에도 접근 할 경우 Map으로 리다이렉트
-// - 로그인 정보를 이용한 가게 찜, 현재 로그인 한 유저 표시
 // - 찜 한 가게의 맵 마커 다르게 표시
 //
 // 이후에 할 일
@@ -59,20 +56,34 @@ function LoggedInMap({ storeResponse }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <Image
-          src='/ROLIC_LOGO.svg'
-          alt='Rolic Logo'
-          width={420}
-          height={120}
-          style={{ margin: '0 0 20px 0' }}
-        />
+        <LeftContainerHeader>
+          <Image
+            src='/ROLIC_LOGO.svg'
+            alt='Rolic Logo'
+            width={420}
+            height={120}
+            style={{ margin: '0 0 20px 0' }}
+          />
+          {currentUserInfo !== undefined && (
+            <UserInfo
+              name={currentUserInfo.name}
+              picture={currentUserInfo.picture_uri}
+            />
+          )}
+        </LeftContainerHeader>
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>
         {selectedStore === undefined ? (
           <NotSelected />
         ) : (
-          <StoreInfo store={selectedStore} />
+          currentUserInfo !== undefined && (
+            <LoggedInStoreInfo
+              store={selectedStore}
+              userInfo={currentUserInfo}
+              selectedId={selectedId}
+            />
+          )
         )}
       </RightContainer>
     </MapPageContainer>
@@ -132,4 +143,10 @@ const MapWrap = styled.div`
   width: 1400px;
   height: 910px;
   border: 2px solid #ff904d;
+`;
+
+const LeftContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
