@@ -9,7 +9,7 @@ class User {
         id: email,
         name: name,
         picture_uri: pictureURI,
-        like_store: []
+        like_store: [0]
       },
       {
         headers: {
@@ -19,8 +19,28 @@ class User {
     );
   }
 
-  async getUser(email: string): Promise<AxiosResponse<UserResponse>> {
+  getUser(email: string): Promise<AxiosResponse<UserResponse>> {
     return axios.get(`http://localhost:4000/users/${email}`);
+  }
+
+  likeStore(userEmail: string, storeId: number, likeStore: number[]) {
+    return axios.patch(
+      `http://localhost:4000/users/${userEmail}`,
+      {
+        like_store: [...likeStore, storeId]
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  unLikeStore(userEmail: string, storeId: number, likeStoreArr: number[]) {
+    return axios.patch(
+      `http://localhost:4000/users/${userEmail}`,
+      {
+        like_store: likeStoreArr.filter((el) => el !== storeId)
+      },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }
 
