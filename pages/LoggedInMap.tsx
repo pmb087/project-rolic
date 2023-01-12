@@ -1,51 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import StoreService from '../utils/StoreService';
+import StoreService from '../utils/service/StoreService';
 import { StoreResponse, UserResponse } from '../utils/types/index';
 import styled from 'styled-components';
 import Image from 'next/image';
-import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
-import UserService from '../utils/UserService';
-import { useRecoilValue } from 'recoil';
-import { userInfoState } from '../utils/store';
+import UserService from '../utils/service/UserService';
 import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
 import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
 import UserInfo from '../components/UserInfo';
+import LocalStorageService from '../utils/service/LocalStorageService';
 
 interface Props {
   storeResponse: StoreResponse[];
 }
-// Todo
-// - 찜 한 가게의 맵 마커 다르게 표시
-//
-// 이후에 할 일
+
 // - 마이 페이지 만들고 찜 한 가게 몰아보기
-// - 모든 계정들이 좋아요 한 가게의 통계 페이지
 // - 가게 추가 건의 페이지 (유저)
 // - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게)
+// - 모든 계정들이 좋아요 한 가게의 통계 페이지
 
 function LoggedInMap({ storeResponse }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
   const route = useRouter();
-  const { email, isLoggedIn } = useRecoilValue(userInfoState);
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeResponse[selectedId - 1];
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
 
-  const getUserInfo = async () => {
-    if (!isLoggedIn) return;
-    const userInfo = await UserService.getUser(email);
+  const getUserInfo = async (currentUser: string) => {
+    const userInfo = await UserService.getUser(currentUser);
     setCurrentUserInfo(userInfo.data);
   };
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    const currentUser = LocalStorageService.get<string>('user');
+    if (currentUser === null) {
       route.push('/Map');
       return;
+    } else {
+      getUserInfo(currentUser);
     }
-    getUserInfo();
   }, []);
 
   useEffect(() => {
