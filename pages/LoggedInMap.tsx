@@ -1,31 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import StoreService from '../utils/service/StoreService';
-import { StoreResponse } from '../utils/types/index';
+import { StoreResponse, UserResponse } from '../utils/types/index';
 import styled from 'styled-components';
 import Image from 'next/image';
-import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
-import useScript from '../utils/hooks/useScript';
+import UserService from '../utils/service/UserService';
+import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
-import GoogleLogin from '../components/GoogleLogin';
+import useScript from '../utils/hooks/useScript';
+import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
+import UserInfo from '../components/UserInfo';
+import LocalStorageService from '../utils/service/LocalStorageService';
 
 interface Props {
-  storeData: StoreResponse[];
+  storeResponse: StoreResponse[];
 }
 
-// 해당 페이지는 비로그인으로 지도에 접근했을 경우 제공되는 페이지
-// 따라서 사용자의 행동에 따른 서버 업데이트가 발생하는 경우는 없으며 그렇기에 StaticProps를 통해 빌드할 것
-// 물론 그에 따라서 SWR을 사용하는 이유는 없기 때문에 캐싱하지 않음
-//  ㄴ 정적 빌드 후 배포 한다면 애초에 페이지가 따로 생성되므로 캐싱할 필요가 없음.
-function Map({ storeData }: Props) {
+// - 마이 페이지 만들고 찜 한 가게 몰아보기
+// - 가게 추가 건의 페이지 (유저)
+// - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게)
+// - 모든 계정들이 좋아요 한 가게의 통계 페이지
+
+function LoggedInMap({ storeResponse }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
+  const route = useRouter();
   const [selectedId, setSelectedId] = useState(-1);
-  const selectedStore = storeData[selectedId - 1];
+  const selectedStore = storeResponse[selectedId - 1];
+  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+
+  const getUserInfo = async (currentUser: string) => {
+    const userInfo = await UserService.getUser(currentUser);
+    setCurrentUserInfo(userInfo.data);
+  };
+
+  useEffect(() => {
+    const currentUser = LocalStorageService.get<string>('user');
+    if (currentUser === null) {
+      route.push('/Map');
+      return;
+    } else {
+      getUserInfo(currentUser);
+    }
+  }, []);
 
   useEffect(() => {
     const scriptSrc = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`;
-    useScript(scriptSrc, () => onLoadKakaoMap(storeData, setSelectedId));
-  }, [storeData]);
+    useScript(scriptSrc, () => onLoadKakaoMap(storeResponse, setSelectedId));
+  }, [storeResponse]);
 
   return (
     <MapPageContainer>
@@ -38,7 +59,12 @@ function Map({ storeData }: Props) {
             height={120}
             style={{ margin: '0 0 20px 0' }}
           />
-          <GoogleLogin />
+          {currentUserInfo !== undefined && (
+            <UserInfo
+              name={currentUserInfo.name}
+              picture={currentUserInfo.picture_uri}
+            />
+          )}
         </LeftContainerHeader>
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
@@ -46,21 +72,28 @@ function Map({ storeData }: Props) {
         {selectedStore === undefined ? (
           <NotSelected />
         ) : (
-          <StoreInfo store={selectedStore} />
+          currentUserInfo !== undefined && (
+            <LoggedInStoreInfo
+              store={selectedStore}
+              userInfo={currentUserInfo}
+              selectedId={selectedId}
+            />
+          )
         )}
       </RightContainer>
     </MapPageContainer>
   );
 }
 
-export default Map;
+export default LoggedInMap;
 
-export async function getStaticProps() {
-  const storeData = await StoreService.getAllStore().then((res) => res.data);
+export async function getServerSideProps() {
+  const storeRes = await StoreService.getAllStore();
+  const storeResponse = storeRes.data;
 
   return {
     props: {
-      storeData
+      storeResponse
     }
   };
 }
@@ -110,5 +143,5 @@ const MapWrap = styled.div`
 const LeftContainerHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 `;

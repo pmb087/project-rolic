@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/gapi.auth2": "^0.0.56",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.2.1",
+    "gapi-script": "^1.2.0",
+    "jwt-decode": "^3.1.2",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
