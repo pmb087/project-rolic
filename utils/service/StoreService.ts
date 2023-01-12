@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { StoreResponse } from '../utils/types/index';
+import { StoreResponse } from '../types/index';
 
 class Store {
   async getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {

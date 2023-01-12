@@ -4,7 +4,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { StoreResponse, UserResponse } from '../utils/types/index';
 import React, { useEffect, useState } from 'react';
-import UserService from '../utils/UserService';
+import UserService from '../utils/service/UserService';
 
 interface Props {
   store: StoreResponse;

@@ -1,9 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
-import { UserResponse } from '../utils/types/index';
+import { UserResponse } from '../types/index';
 
 class User {
-  signUp(email: string, name: string, pictureURI: string) {
-    axios.post(
+  signUp(
+    email: string,
+    name: string,
+    pictureURI: string
+  ): Promise<AxiosResponse<UserResponse>> {
+    return axios.post(
       'http://localhost:4000/users',
       {
         id: email,
@@ -23,7 +27,11 @@ class User {
     return axios.get(`http://localhost:4000/users/${email}`);
   }
 
-  likeStore(userEmail: string, storeId: number, likeStore: number[]) {
+  likeStore(
+    userEmail: string,
+    storeId: number,
+    likeStore: number[]
+  ): Promise<AxiosResponse<UserResponse>> {
     return axios.patch(
       `http://localhost:4000/users/${userEmail}`,
       {
@@ -33,7 +41,11 @@ class User {
     );
   }
 
-  unLikeStore(userEmail: string, storeId: number, likeStoreArr: number[]) {
+  unLikeStore(
+    userEmail: string,
+    storeId: number,
+    likeStoreArr: number[]
+  ): Promise<AxiosResponse<UserResponse>> {
     return axios.patch(
       `http://localhost:4000/users/${userEmail}`,
       {

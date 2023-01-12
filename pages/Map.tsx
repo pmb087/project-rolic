@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import StoreService from '../utils/StoreService';
+import StoreService from '../utils/service/StoreService';
 import { StoreResponse } from '../utils/types/index';
 import styled from 'styled-components';
 import Image from 'next/image';
