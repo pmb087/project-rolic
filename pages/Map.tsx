@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse } from '../utils/types/index';
 import styled from 'styled-components';
@@ -8,6 +7,7 @@ import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
 import useScript from '../utils/hooks/useScript';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
+import GoogleLogin from '../components/GoogleLogin';
 
 interface Props {
   storeData: StoreResponse[];
@@ -30,13 +30,16 @@ function Map({ storeData }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <Image
-          src='/ROLIC_LOGO.svg'
-          alt='Rolic Logo'
-          width={420}
-          height={120}
-          style={{ margin: '0 0 20px 0' }}
-        />
+        <LeftContainerHeader>
+          <Image
+            src='/ROLIC_LOGO.svg'
+            alt='Rolic Logo'
+            width={420}
+            height={120}
+            style={{ margin: '0 0 20px 0' }}
+          />
+          <GoogleLogin />
+        </LeftContainerHeader>
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>
@@ -102,4 +105,10 @@ const MapWrap = styled.div`
   width: 1400px;
   height: 910px;
   border: 2px solid #ff904d;
+`;
+
+const LeftContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

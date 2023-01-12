@@ -11,7 +11,6 @@ export interface DecodedResponse {
 
 export interface CurrentUser {
   email: string;
-  isLoggedIn: boolean;
 }
 
 export interface StoreResponse {
@@ -36,4 +35,11 @@ export interface UserResponse {
   name: string;
   picture_uri: string;
   like_store: number[];
+}
+
+type Position = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+export interface GoogleLoginStyle {
+  position: Position | undefined;
+  left: string | undefined;
+  bottom: string | undefined;
 }
