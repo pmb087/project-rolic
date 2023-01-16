@@ -2,24 +2,23 @@ import React, { useEffect, useState } from 'react';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse, UserResponse } from '../utils/types/index';
 import styled from 'styled-components';
-import Image from 'next/image';
 import NotSelected from '../components/NotSelected';
 import UserService from '../utils/service/UserService';
 import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
 import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
-import UserInfo from '../components/UserInfo';
 import LocalStorageService from '../utils/service/LocalStorageService';
+import Navbar from '../components/Navbar';
 
 interface Props {
   storeResponse: StoreResponse[];
 }
 
-// - 마이 페이지 만들고 찜 한 가게 몰아보기
-// - 가게 추가 건의 페이지 (유저)
+// Else
 // - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게)
 // - 모든 계정들이 좋아요 한 가게의 통계 페이지
+// - 찜 목록 에서 클릭 한 가게의 상세 페이지
 
 function LoggedInMap({ storeResponse }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
@@ -51,21 +50,7 @@ function LoggedInMap({ storeResponse }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <LeftContainerHeader>
-          <Image
-            src='/ROLIC_LOGO.svg'
-            alt='Rolic Logo'
-            width={420}
-            height={120}
-            style={{ margin: '0 0 20px 0' }}
-          />
-          {currentUserInfo !== undefined && (
-            <UserInfo
-              name={currentUserInfo.name}
-              picture={currentUserInfo.picture_uri}
-            />
-          )}
-        </LeftContainerHeader>
+        <Navbar currentUserInfo={currentUserInfo} />
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>
@@ -138,10 +123,4 @@ const MapWrap = styled.div`
   width: 1400px;
   height: 910px;
   border: 2px solid #ff904d;
-`;
-
-const LeftContainerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 `;
