@@ -43,3 +43,8 @@ export interface GoogleLoginStyle {
   left: string | undefined;
   bottom: string | undefined;
 }
+
+export interface RequestContent {
+  storeName: string;
+  requestReason: string;
+}
