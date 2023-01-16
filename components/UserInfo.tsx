@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import styled from 'styled-components';
+import UserMenu from './UserMenu';
 
 interface Props {
   name: string;
@@ -7,6 +9,11 @@ interface Props {
 }
 
 function UserInfo({ name, picture }: Props) {
+  const [isClicked, setisClicked] = useState(false);
+
+  const handleClicked = () => {
+    setisClicked((prev) => !prev);
+  };
   return (
     <UserInfoContainer>
       <WelcomeText>{`라멘을 사랑하는, ${name}님`}</WelcomeText>
@@ -15,8 +22,10 @@ function UserInfo({ name, picture }: Props) {
         alt='profile_picture'
         width={80}
         height={80}
-        style={{ borderRadius: '40px' }}
+        style={{ borderRadius: '40px', cursor: 'pointer' }}
+        onClick={handleClicked}
       ></Image>
+      {isClicked && <UserMenu />}
     </UserInfoContainer>
   );
 }
@@ -24,9 +33,10 @@ function UserInfo({ name, picture }: Props) {
 export default UserInfo;
 
 const UserInfoContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 0 50px 20px 0;
 `;
 
 const WelcomeText = styled.h2`

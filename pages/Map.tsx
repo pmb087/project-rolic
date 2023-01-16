@@ -8,6 +8,7 @@ import NotSelected from '../components/NotSelected';
 import useScript from '../utils/hooks/useScript';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import GoogleLogin from '../components/GoogleLogin';
+import Navbar from '../components/Navbar';
 
 interface Props {
   storeData: StoreResponse[];
@@ -30,16 +31,7 @@ function Map({ storeData }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <LeftContainerHeader>
-          <Image
-            src='/ROLIC_LOGO.svg'
-            alt='Rolic Logo'
-            width={420}
-            height={120}
-            style={{ margin: '0 0 20px 0' }}
-          />
-          <GoogleLogin />
-        </LeftContainerHeader>
+        <Navbar />
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>
@@ -105,10 +97,4 @@ const MapWrap = styled.div`
   width: 1400px;
   height: 910px;
   border: 2px solid #ff904d;
-`;
-
-const LeftContainerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
