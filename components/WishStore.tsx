@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { StoreResponse } from '../utils/types';
 
@@ -7,17 +8,14 @@ interface Props {
 }
 
 function WishStore({ storeInfo }: Props) {
-  const {
-    id,
-    thumbnail,
-    store_name,
-    parking_info,
-    main_menu,
-    address,
-    click_link
-  } = storeInfo;
+  const { push } = useRouter();
+  const { id, thumbnail, store_name } = storeInfo;
+
+  const goToStoreInfo = () => {
+    push(`/StoreInfo/${id}`);
+  };
   return (
-    <WishStoreContainer>
+    <WishStoreContainer onClick={goToStoreInfo}>
       <Image
         src={thumbnail}
         width={400}
