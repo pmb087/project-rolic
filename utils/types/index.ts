@@ -47,4 +47,5 @@ export interface GoogleLoginStyle {
 export interface RequestContent {
   storeName: string;
   requestReason: string;
+  postTime: string;
 }
