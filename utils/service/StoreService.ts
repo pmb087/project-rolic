@@ -13,6 +13,10 @@ class Store {
   request(content: RequestContent): void {
     axios.post('http://localhost:4000/requests', content);
   }
+
+  getRequest(): Promise<AxiosResponse<RequestContent[]>> {
+    return axios.get('http://localhost:4000/requests');
+  }
 }
 
 export default new Store();
