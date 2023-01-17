@@ -15,11 +15,6 @@ interface Props {
   storeResponse: StoreResponse[];
 }
 
-// Else
-// - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게)
-// - 모든 계정들이 좋아요 한 가게의 통계 페이지
-// - 찜 목록 에서 클릭 한 가게의 상세 페이지
-
 function LoggedInMap({ storeResponse }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
   const route = useRouter();
