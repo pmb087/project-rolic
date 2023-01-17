@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Management from '../components/Management';
 import Navbar from '../components/Navbar';
 import Request from '../components/Request';
 import WishList from '../components/WishList';
@@ -9,7 +10,7 @@ import StoreService from '../utils/service/StoreService';
 import UserService from '../utils/service/UserService';
 import { StoreResponse, UserResponse } from '../utils/types';
 
-type SelectedMenu = 'WISH_LIST' | 'REQUEST_STORE';
+type SelectedMenu = 'WISH_LIST' | 'REQUEST_STORE' | 'MANAGEMENT_REQUEST';
 interface Props {
   storeResponse: StoreResponse[];
 }
@@ -18,6 +19,14 @@ function MyPage({ storeResponse }: Props) {
   const route = useRouter();
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
   const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const getAdminInfo = async () => {
+    if (currentUserInfo !== undefined) {
+      const { data } = await UserService.getAdmin();
+      setIsAdmin(data.includes(currentUserInfo.id));
+    }
+  };
 
   const getUserInfo = async (currentUser: string) => {
     const userInfo = await UserService.getUser(currentUser);
@@ -29,6 +38,10 @@ function MyPage({ storeResponse }: Props) {
   };
 
   useEffect(() => {
+    getAdminInfo();
+  }, [currentUserInfo]);
+
+  useEffect(() => {
     const currentUser = LocalStorageService.get<string>('user');
     if (currentUser === null) {
       route.push('/Map');
@@ -38,9 +51,11 @@ function MyPage({ storeResponse }: Props) {
     }
   }, []);
 
+  const requestMenu = isAdmin ? <Management /> : <Request />;
+
   return (
     <MyPageContainer>
-      <Navbar currentUserInfo={currentUserInfo} />
+      <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
       <ContentContainer>
         <ContentAside>
           <AsideMenu
@@ -49,17 +64,26 @@ function MyPage({ storeResponse }: Props) {
           >
             찜 목록
           </AsideMenu>
-          <AsideMenu
-            onClick={() => handleSelectedMenu('REQUEST_STORE')}
-            currentMenu={selectedMenu === 'REQUEST_STORE'}
-          >
-            추가 문의
-          </AsideMenu>
+          {isAdmin ? (
+            <AsideMenu
+              onClick={() => handleSelectedMenu('MANAGEMENT_REQUEST')}
+              currentMenu={selectedMenu === 'MANAGEMENT_REQUEST'}
+            >
+              문의 관리
+            </AsideMenu>
+          ) : (
+            <AsideMenu
+              onClick={() => handleSelectedMenu('REQUEST_STORE')}
+              currentMenu={selectedMenu === 'REQUEST_STORE'}
+            >
+              추가 문의
+            </AsideMenu>
+          )}
         </ContentAside>
         {selectedMenu === 'WISH_LIST' ? (
           <WishList storeResponse={storeResponse} />
         ) : (
-          <Request />
+          requestMenu
         )}
       </ContentContainer>
     </MyPageContainer>

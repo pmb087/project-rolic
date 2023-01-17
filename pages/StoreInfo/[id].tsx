@@ -12,12 +12,23 @@ interface Props {
   storeData: StoreResponse;
 }
 
-// - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게, Request는 서버에 있음)
+// - Management [Function] Post onClick => 가게 요청 상세 [Page]
+// - Management [Function] Post 개별 삭제 API (요청 처리 완료 시 수동으로 완료한 요청 제거 할 수 있게)
+// - AddStore [Page] (요청을 확인하면 해당 가게 정보를 찾아서 웹 상에서 관리자가 가게를 추가 할 수 있게)
+// - AddStore [Function] (StoreService.AddStore(object: StoreResponse))
 // - 가게 별 받은 총 찜 수 통계(순위) 페이지
 
 function StoreInfoPage({ storeData }: Props) {
   const { push } = useRouter();
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const getAdminInfo = async () => {
+    if (currentUserInfo !== undefined) {
+      const { data } = await UserService.getAdmin();
+      setIsAdmin(data.includes(currentUserInfo.id));
+    }
+  };
 
   const goToMyPage = () => {
     push('/MyPage');
@@ -29,13 +40,17 @@ function StoreInfoPage({ storeData }: Props) {
   };
 
   useEffect(() => {
+    getAdminInfo();
+  }, [currentUserInfo]);
+
+  useEffect(() => {
     const currentUser = LocalStorageService.get<string>('user');
     if (currentUser !== null) getUserInfo(currentUser);
   }, []);
 
   return (
     <StoreInfoContainer>
-      <Navbar currentUserInfo={currentUserInfo} />
+      <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
       <StoreInfoWrap>
         <StoreInfoLargeTitle>
           <TitleText>상세 페이지</TitleText>

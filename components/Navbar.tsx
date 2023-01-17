@@ -1,14 +1,17 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import UserService from '../utils/service/UserService';
 import { UserResponse } from '../utils/types';
 import GoogleLogin from './GoogleLogin';
 import UserInfo from './UserInfo';
 
 interface Props {
   currentUserInfo?: UserResponse;
+  isAdmin: boolean;
 }
 
-function Navbar({ currentUserInfo }: Props) {
+function Navbar({ currentUserInfo, isAdmin }: Props) {
   return (
     <LeftContainerHeader>
       <Image
@@ -22,6 +25,7 @@ function Navbar({ currentUserInfo }: Props) {
         <UserInfo
           name={currentUserInfo.name}
           picture={currentUserInfo.picture_uri}
+          isAdmin={isAdmin}
         />
       ) : (
         <GoogleLogin />
