@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import formatDate from '../utils/hooks/formatDate';
 import StoreService from '../utils/service/StoreService';
 
 function Request() {
@@ -22,7 +23,8 @@ function Request() {
   const sendRequest = () => {
     const content = {
       storeName: storeName,
-      requestReason: requestReason
+      requestReason: requestReason,
+      postTime: formatDate(new Date())
     };
     StoreService.request(content);
     setRequestReason('');

@@ -1,5 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
-import { RequestContent, StoreResponse } from '../types/index';
+import {
+  AddStoreBody,
+  RequestContent,
+  RequestGetContent,
+  StoreResponse
+} from '../types/index';
 
 class Store {
   async getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
@@ -12,6 +17,18 @@ class Store {
 
   request(content: RequestContent): void {
     axios.post('http://localhost:4000/requests', content);
+  }
+
+  getRequest(): Promise<AxiosResponse<RequestGetContent[]>> {
+    return axios.get('http://localhost:4000/requests');
+  }
+
+  deleteRequest(id: number): void {
+    axios.delete(`http://localhost:4000/requests/${id}`);
+  }
+
+  addStore(content: AddStoreBody): void {
+    axios.post('http://localhost:4000/store', content);
   }
 }
 

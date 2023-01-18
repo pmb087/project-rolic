@@ -21,11 +21,23 @@ function LoggedInMap({ storeResponse }: Props) {
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeResponse[selectedId - 1];
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const getAdminInfo = async () => {
+    if (currentUserInfo !== undefined) {
+      const { data } = await UserService.getAdmin();
+      setIsAdmin(data.includes(currentUserInfo.id));
+    }
+  };
 
   const getUserInfo = async (currentUser: string) => {
     const userInfo = await UserService.getUser(currentUser);
     setCurrentUserInfo(userInfo.data);
   };
+
+  useEffect(() => {
+    getAdminInfo();
+  }, [currentUserInfo]);
 
   useEffect(() => {
     const currentUser = LocalStorageService.get<string>('user');
@@ -45,7 +57,7 @@ function LoggedInMap({ storeResponse }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <Navbar currentUserInfo={currentUserInfo} />
+        <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>

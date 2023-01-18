@@ -27,6 +27,10 @@ class User {
     return axios.get(`http://localhost:4000/users/${email}`);
   }
 
+  getAdmin(): Promise<AxiosResponse<string[]>> {
+    return axios.get('http://localhost:4000/admin');
+  }
+
   likeStore(
     userEmail: string,
     storeId: number,

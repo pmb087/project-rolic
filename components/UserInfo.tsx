@@ -6,9 +6,10 @@ import UserMenu from './UserMenu';
 interface Props {
   name: string;
   picture: string;
+  isAdmin: boolean;
 }
 
-function UserInfo({ name, picture }: Props) {
+function UserInfo({ name, picture, isAdmin }: Props) {
   const [isClicked, setisClicked] = useState(false);
 
   const handleClicked = () => {
@@ -16,7 +17,9 @@ function UserInfo({ name, picture }: Props) {
   };
   return (
     <UserInfoContainer>
-      <WelcomeText>{`라멘을 사랑하는, ${name}님`}</WelcomeText>
+      <WelcomeText>
+        {isAdmin ? `ROLIC 관리자, ${name}님` : `라멘을 사랑하는, ${name}님`}
+      </WelcomeText>
       <Image
         src={picture}
         alt='profile_picture'

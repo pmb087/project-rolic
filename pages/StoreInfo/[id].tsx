@@ -12,12 +12,17 @@ interface Props {
   storeData: StoreResponse;
 }
 
-// - 가게 추가 페이지 (관리자가 웹에서 처리할 수 있게, Request는 서버에 있음)
-// - 가게 별 받은 총 찜 수 통계(순위) 페이지
-
 function StoreInfoPage({ storeData }: Props) {
   const { push } = useRouter();
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const getAdminInfo = async () => {
+    if (currentUserInfo !== undefined) {
+      const { data } = await UserService.getAdmin();
+      setIsAdmin(data.includes(currentUserInfo.id));
+    }
+  };
 
   const goToMyPage = () => {
     push('/MyPage');
@@ -29,13 +34,17 @@ function StoreInfoPage({ storeData }: Props) {
   };
 
   useEffect(() => {
+    getAdminInfo();
+  }, [currentUserInfo]);
+
+  useEffect(() => {
     const currentUser = LocalStorageService.get<string>('user');
     if (currentUser !== null) getUserInfo(currentUser);
   }, []);
 
   return (
     <StoreInfoContainer>
-      <Navbar currentUserInfo={currentUserInfo} />
+      <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
       <StoreInfoWrap>
         <StoreInfoLargeTitle>
           <TitleText>상세 페이지</TitleText>
