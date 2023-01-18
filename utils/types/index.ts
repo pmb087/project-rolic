@@ -30,6 +30,22 @@ export interface StoreResponse {
   };
 }
 
+export interface AddStoreBody {
+  thumbnail: string;
+  store_name: string;
+  parking_info: string;
+  main_menu: string[];
+  address: string;
+  click_link: {
+    mango: string;
+    dining: string;
+  };
+  position: {
+    lat: number;
+    lng: number;
+  };
+}
+
 export interface UserResponse {
   id: string;
   name: string;
@@ -45,6 +61,13 @@ export interface GoogleLoginStyle {
 }
 
 export interface RequestContent {
+  storeName: string;
+  requestReason: string;
+  postTime: string;
+}
+
+export interface RequestGetContent {
+  id: number;
   storeName: string;
   requestReason: string;
   postTime: string;
