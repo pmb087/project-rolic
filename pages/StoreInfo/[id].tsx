@@ -12,12 +12,6 @@ interface Props {
   storeData: StoreResponse;
 }
 
-// - Management [Function] Post onClick => 가게 요청 상세 [Page]
-// - Management [Function] Post 개별 삭제 API (요청 처리 완료 시 수동으로 완료한 요청 제거 할 수 있게)
-// - AddStore [Page] (요청을 확인하면 해당 가게 정보를 찾아서 웹 상에서 관리자가 가게를 추가 할 수 있게)
-// - AddStore [Function] (StoreService.AddStore(object: StoreResponse))
-// - 가게 별 받은 총 찜 수 통계(순위) 페이지
-
 function StoreInfoPage({ storeData }: Props) {
   const { push } = useRouter();
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
