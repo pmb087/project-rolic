@@ -126,7 +126,7 @@ const RightContainer = styled.aside`
 `;
 
 const MapWrap = styled.div`
-  width: 1400px;
+  width: 940px;
   height: 910px;
   border: 2px solid #ff904d;
 `;
