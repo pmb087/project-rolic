@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleLogin from '../components/GoogleLogin';
 import LocalStorageService from '../utils/service/LocalStorageService';

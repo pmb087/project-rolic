@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
 import styled from 'styled-components';
 import UserMenu from './UserMenu';
 

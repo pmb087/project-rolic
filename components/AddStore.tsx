@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { AddStoreBody } from '../utils/types';

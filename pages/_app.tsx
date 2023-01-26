@@ -1,9 +1,9 @@
+import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/theme';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const route = useRouter();

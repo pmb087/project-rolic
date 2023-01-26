@@ -17,6 +17,6 @@
     "incremental": true,
     "types": ["kakao.maps.d.ts", "gapi", "gapi.auth2"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server/index.js"],
   "exclude": ["node_modules"]
 }

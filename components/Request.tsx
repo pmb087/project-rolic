@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import formatDate from '../utils/hooks/formatDate';
 import StoreService from '../utils/service/StoreService';

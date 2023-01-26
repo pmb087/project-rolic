@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { RequestGetContent } from '../utils/types';
