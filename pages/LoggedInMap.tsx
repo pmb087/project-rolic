@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse, UserResponse } from '../utils/types/index';
-import styled from 'styled-components';
 import NotSelected from '../components/NotSelected';
 import UserService from '../utils/service/UserService';
-import { useRouter } from 'next/router';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
 import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
@@ -44,9 +44,8 @@ function LoggedInMap({ storeResponse }: Props) {
     if (currentUser === null) {
       route.push('/Map');
       return;
-    } else {
-      getUserInfo(currentUser);
     }
+    getUserInfo(currentUser);
   }, []);
 
   useEffect(() => {
@@ -58,7 +57,7 @@ function LoggedInMap({ storeResponse }: Props) {
     <MapPageContainer>
       <LeftContainer>
         <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
-        <MapWrap id='map'></MapWrap>
+        <MapWrap id='map' />
       </LeftContainer>
       <RightContainer>
         {selectedStore === undefined ? (

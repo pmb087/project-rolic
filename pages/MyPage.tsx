@@ -57,9 +57,8 @@ function MyPage({ storeResponse }: Props) {
     if (currentUser === null) {
       route.push('/Map');
       return;
-    } else {
-      getUserInfo(currentUser);
     }
+    getUserInfo(currentUser);
   }, []);
 
   return (

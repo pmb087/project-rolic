@@ -62,6 +62,7 @@
     "no-useless-return": "off",
     "react/react-in-jsx-scope": "off",
     "no-undef": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "no-unused-vars": "warn"
   }
 }

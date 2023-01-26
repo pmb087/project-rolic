@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import StoreService from '../../utils/service/StoreService';
 import { StoreResponse, UserResponse } from '../../utils/types';
-import styled from 'styled-components';
 import StoreInfoLarge from '../../components/StoreInfoLarge';
 import UserService from '../../utils/service/UserService';
 import LocalStorageService from '../../utils/service/LocalStorageService';
-import { useRouter } from 'next/router';
 
 interface Props {
   storeData: StoreResponse;
