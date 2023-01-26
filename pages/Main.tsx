@@ -56,7 +56,7 @@ function Main() {
           }}
         />
         <Image
-          src='/MainClick.svg'
+          src='/mainClick.svg'
           alt='click'
           width={400}
           height={160}
