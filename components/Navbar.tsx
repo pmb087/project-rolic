@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import React from 'react';
 import styled from 'styled-components';
 import { UserResponse } from '../utils/types';
 import GoogleLogin from './GoogleLogin';
@@ -40,7 +41,7 @@ function Navbar({ currentUserInfo, isAdmin }: Props) {
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar);
 
 const LeftContainerHeader = styled.div`
   display: flex;

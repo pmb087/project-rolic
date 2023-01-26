@@ -15,6 +15,7 @@ function UserInfo({ name, picture, isAdmin }: Props) {
   const handleClicked = () => {
     setisClicked((prev) => !prev);
   };
+
   return (
     <UserInfoContainer>
       <WelcomeText>

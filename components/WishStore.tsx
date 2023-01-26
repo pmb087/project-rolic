@@ -14,6 +14,7 @@ function WishStore({ storeInfo }: Props) {
   const goToStoreInfo = () => {
     push(`/StoreInfo/${id}`);
   };
+
   return (
     <WishStoreContainer onClick={goToStoreInfo}>
       <Image
