@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -17,7 +18,7 @@ function ClickLink({ type, link }: Props) {
 
   if (isNoData) {
     return (
-      <a style={{ cursor: 'pointer' }} onClick={noDataClick}>
+      <NoLinkWrap onClick={noDataClick}>
         <ClickLinkWrap>
           <ImageWrap themeColor={theme} isNoData={isNoData}>
             <Image
@@ -36,7 +37,7 @@ function ClickLink({ type, link }: Props) {
             />
           </ImageWrap>
         </ClickLinkWrap>
-      </a>
+      </NoLinkWrap>
     );
   }
 
@@ -87,4 +88,11 @@ const ImageWrap = styled.div<Theme>`
   border-radius: 20px;
   border: 3px solid
     ${({ themeColor, isNoData }) => (isNoData ? '#a0a0a0' : themeColor)};
+`;
+
+const NoLinkWrap = styled.button`
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  border: none;
 `;

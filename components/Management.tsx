@@ -20,7 +20,7 @@ function Management() {
     <ManagementContainer>
       <ManagementTitle>문의 관리</ManagementTitle>
       <ManagementPostContainer>
-        <RequestPostLinkContainer header={true}>
+        <RequestPostLinkContainer header>
           <RequestPostNumberHeader>접수 번호</RequestPostNumberHeader>
           <RequestPostNameHeader>요청 가게</RequestPostNameHeader>
         </RequestPostLinkContainer>

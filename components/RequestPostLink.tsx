@@ -20,7 +20,7 @@ function RequestPostLink({
   const { id, storeName, postTime, requestReason } = currentRequest;
   const [toggleModal, setToggleModal] = useState(false);
 
-  const deleteRequestData = useCallback((id: number) => {
+  const deleteRequestData = useCallback(() => {
     StoreService.deleteRequest(id);
     setRequest(allRequest!.filter((el) => el.id !== id));
   }, []);
@@ -40,7 +40,7 @@ function RequestPostLink({
           {storeName}
         </RequestPostName>
         <RequestPostTime>{postTime}</RequestPostTime>
-        <DeleteButton onClick={() => deleteRequestData(id)}>삭제</DeleteButton>
+        <DeleteButton onClick={deleteRequestData}>삭제</DeleteButton>
       </RequestPostLinkContainer>
     </>
   );

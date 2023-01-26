@@ -60,9 +60,22 @@
     "no-console": "off",
     "react/require-default-props": "off",
     "no-useless-return": "off",
-    "react/react-in-jsx-scope": "off",
     "no-undef": "off",
     "camelcase": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "off",
+    "prefer-destructuring": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": [
+          "function-declaration",
+          "function-expression",
+          "arrow-function"
+        ]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "no-restricted-globals": "off",
+    "react/jsx-props-no-spreading": ["off"]
   }
 }

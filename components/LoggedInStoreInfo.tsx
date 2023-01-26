@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
 import Info from './Info';
 import ClickLink from './ClickLink';
-import Image from 'next/image';
-import styled from 'styled-components';
 import { StoreResponse, UserResponse } from '../utils/types/index';
 import UserService from '../utils/service/UserService';
 

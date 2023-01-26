@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 const useScript = (url: string, onload: () => void) => {
   if (typeof document !== 'undefined') {
     const script = document.createElement('script');
