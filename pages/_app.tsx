@@ -1,6 +1,4 @@
 import type { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
-import { SWRConfig } from 'swr';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyle';
 import theme from '../styles/theme';
@@ -17,14 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <RecoilRoot>
-      <SWRConfig>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </SWRConfig>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Component {...pageProps} />
+    </ThemeProvider>
   );
 }
 

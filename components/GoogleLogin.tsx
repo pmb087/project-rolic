@@ -1,6 +1,4 @@
 import React, { useRef } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { userInfoState } from '../utils/store/index';
 import useScript from '../utils/hooks/useScript';
 import jwt_decode from 'jwt-decode';
 import {
@@ -26,15 +24,12 @@ interface Props {
 function GoogleLogin({ option }: Props) {
   const route = useRouter();
   const googleSignInButton = useRef<HTMLDivElement>(null);
-  const setUserInfo = useSetRecoilState(userInfoState);
 
   const useCredential = (response: GApiResponse) => {
     const { email, name, picture }: DecodedResponse = jwt_decode(
       response.credential
     );
-    setUserInfo({
-      email: email
-    });
+
     LocalStorageService.set('user', email);
     UserService.signUp(email, name, picture).catch((error) => {
       if (error.message === 'Insert failed, duplicate id') {
