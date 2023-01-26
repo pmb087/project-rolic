@@ -8,7 +8,7 @@ class User {
     pictureURI: string
   ): Promise<AxiosResponse<UserResponse>> {
     return axios.post(
-      'http://localhost:4000/users',
+      'https://project-rolic-json-server.herokuapp.com/users',
       {
         id: email,
         name: name,
@@ -24,11 +24,13 @@ class User {
   }
 
   getUser(email: string): Promise<AxiosResponse<UserResponse>> {
-    return axios.get(`http://localhost:4000/users/${email}`);
+    return axios.get(
+      `https://project-rolic-json-server.herokuapp.com/users/${email}`
+    );
   }
 
   getAdmin(): Promise<AxiosResponse<string[]>> {
-    return axios.get('http://localhost:4000/admin');
+    return axios.get('https://project-rolic-json-server.herokuapp.com/admin');
   }
 
   likeStore(
@@ -37,7 +39,7 @@ class User {
     likeStore: number[]
   ): Promise<AxiosResponse<UserResponse>> {
     return axios.patch(
-      `http://localhost:4000/users/${userEmail}`,
+      `https://project-rolic-json-server.herokuapp.com/users/${userEmail}`,
       {
         like_store: [...likeStore, storeId]
       },
@@ -51,7 +53,7 @@ class User {
     likeStoreArr: number[]
   ): Promise<AxiosResponse<UserResponse>> {
     return axios.patch(
-      `http://localhost:4000/users/${userEmail}`,
+      `https://project-rolic-json-server.herokuapp.com/users/${userEmail}`,
       {
         like_store: likeStoreArr.filter((el) => el !== storeId)
       },
