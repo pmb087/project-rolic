@@ -3,12 +3,6 @@ import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { AddStoreBody } from '../utils/types';
 
-// - 망고,다이닝 링크 없을 경우 흑백처리, 클릭불가
-// - 좌상단 로고 클릭시 지도로 이동
-
-// - 전체적인 리팩토링
-// - 배포
-
 function AddStore() {
   const [storeMenu, setStoreMenu] = useState<string[]>([]);
   const [menuString, setMenuString] = useState('');
@@ -22,6 +16,17 @@ function AddStore() {
     lat: '',
     lng: ''
   });
+  const addStoreButtonDisabled = !(
+    addStoreData.thumbnail !== '' &&
+    addStoreData.storeName !== '' &&
+    addStoreData.parkingInfo !== '' &&
+    addStoreData.address !== '' &&
+    addStoreData.mango !== '' &&
+    addStoreData.dining !== '' &&
+    addStoreData.lat !== '' &&
+    addStoreData.lng !== '' &&
+    storeMenu.length !== 0
+  );
 
   const handleMenuString = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -173,7 +178,10 @@ function AddStore() {
           />
         </div>
       </AddStoreInputContainer>
-      <PostStoreDataButton onClick={addStoreToMap}>
+      <PostStoreDataButton
+        onClick={addStoreToMap}
+        disabled={addStoreButtonDisabled}
+      >
         가게 추가하기
       </PostStoreDataButton>
     </AddStoreContainer>
@@ -301,5 +309,10 @@ const PostStoreDataButton = styled.button`
     cursor: pointer;
     background-color: #fff;
     color: #ff904d;
+  }
+
+  :disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 `;
