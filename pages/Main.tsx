@@ -11,7 +11,7 @@ function Main() {
   const googleLoginStyleOption: GoogleLoginStyle = {
     position: 'absolute',
     left: 'calc((100% - 400px) / 2)',
-    bottom: '200px'
+    bottom: '100px'
   };
 
   const goToMap = () => {
