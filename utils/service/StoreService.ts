@@ -8,27 +8,39 @@ import {
 
 class Store {
   getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
-    return axios.get('http://localhost:4000/store');
+    return axios.get('https://project-rolic-json-server.herokuapp.com/store');
   }
 
   getStore(id: number): Promise<AxiosResponse<StoreResponse>> {
-    return axios.get(`http://localhost:4000/store/${id}`);
+    return axios.get(
+      `https://project-rolic-json-server.herokuapp.com/store/${id}`
+    );
   }
 
   request(content: RequestContent): void {
-    axios.post('http://localhost:4000/requests', content);
+    axios.post(
+      'https://project-rolic-json-server.herokuapp.com/requests',
+      content
+    );
   }
 
   getRequest(): Promise<AxiosResponse<RequestGetContent[]>> {
-    return axios.get('http://localhost:4000/requests');
+    return axios.get(
+      'https://project-rolic-json-server.herokuapp.com/requests'
+    );
   }
 
   deleteRequest(id: number): void {
-    axios.delete(`http://localhost:4000/requests/${id}`);
+    axios.delete(
+      `https://project-rolic-json-server.herokuapp.com/requests/${id}`
+    );
   }
 
   addStore(content: AddStoreBody): void {
-    axios.post('http://localhost:4000/store', content);
+    axios.post(
+      'https://project-rolic-json-server.herokuapp.com/store',
+      content
+    );
   }
 }
 
