@@ -6,7 +6,7 @@ function UserMenu() {
   const { pathname, push } = useRouter();
 
   const routingPage = () => {
-    const target = pathname === '/MyPage' ? '/LoggedInMap' : 'MyPage';
+    const target = pathname === '/MyPage' ? '/LoggedInMap' : '/MyPage';
     push(target);
   };
 
