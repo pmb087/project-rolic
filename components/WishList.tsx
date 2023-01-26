@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LocalStorageService from '../utils/service/LocalStorageService';
-import StoreService from '../utils/service/StoreService';
 import UserService from '../utils/service/UserService';
 import { StoreResponse, UserResponse } from '../utils/types';
 import WishStore from './WishStore';
@@ -32,9 +32,18 @@ function WishList({ storeResponse }: Props) {
         <WishListHeaderText>찜 목록</WishListHeaderText>
       </WishListHeader>
       <WishStoreContainer>
-        {filterdStore.map((el) => {
-          return <WishStore key={el.id} storeInfo={el} />;
-        })}
+        {filterdStore.length < 1 ? (
+          <Image
+            src='/noWishList.svg'
+            alt='찜한 가게가 없음'
+            width={800}
+            height={800}
+          />
+        ) : (
+          filterdStore.map((el) => {
+            return <WishStore key={el.id} storeInfo={el} />;
+          })
+        )}
       </WishStoreContainer>
     </WishListContainer>
   );
