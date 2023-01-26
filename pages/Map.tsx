@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse } from '../utils/types/index';
 import styled from 'styled-components';
-import Image from 'next/image';
 import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
 import useScript from '../utils/hooks/useScript';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
-import GoogleLogin from '../components/GoogleLogin';
 import Navbar from '../components/Navbar';
+import LocalStorageService from '../utils/service/LocalStorageService';
+import { useRouter } from 'next/router';
 
 interface Props {
   storeData: StoreResponse[];
@@ -20,8 +20,15 @@ interface Props {
 //  ㄴ 정적 빌드 후 배포 한다면 애초에 페이지가 따로 생성되므로 캐싱할 필요가 없음.
 function Map({ storeData }: Props) {
   const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
+  const { push } = useRouter();
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeData[selectedId - 1];
+
+  useEffect(() => {
+    const currentUser = LocalStorageService.get<string>('user');
+    if (currentUser === null) return;
+    else push('/LoggedInMap');
+  }, []);
 
   useEffect(() => {
     const scriptSrc = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`;
@@ -31,7 +38,7 @@ function Map({ storeData }: Props) {
   return (
     <MapPageContainer>
       <LeftContainer>
-        <Navbar />
+        <Navbar isAdmin={false} />
         <MapWrap id='map'></MapWrap>
       </LeftContainer>
       <RightContainer>

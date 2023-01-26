@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import React from 'react';
 import styled from 'styled-components';
-import UserService from '../utils/service/UserService';
 import { UserResponse } from '../utils/types';
 import GoogleLogin from './GoogleLogin';
 import UserInfo from './UserInfo';
@@ -12,6 +12,12 @@ interface Props {
 }
 
 function Navbar({ currentUserInfo, isAdmin }: Props) {
+  const { push } = useRouter();
+
+  const clickLogo = () => {
+    push('/Map');
+  };
+
   return (
     <LeftContainerHeader>
       <Image
@@ -20,6 +26,7 @@ function Navbar({ currentUserInfo, isAdmin }: Props) {
         width={420}
         height={120}
         style={{ margin: '0 0 20px 0' }}
+        onClick={clickLogo}
       />
       {currentUserInfo !== undefined ? (
         <UserInfo
@@ -34,7 +41,7 @@ function Navbar({ currentUserInfo, isAdmin }: Props) {
   );
 }
 
-export default Navbar;
+export default React.memo(Navbar);
 
 const LeftContainerHeader = styled.div`
   display: flex;

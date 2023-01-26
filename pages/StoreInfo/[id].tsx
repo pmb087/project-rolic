@@ -121,6 +121,7 @@ const TitleText = styled.h1`
 const StoreInfoWrap = styled.div`
   box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
   width: 50%;
+  min-width: 680px;
   align-self: center;
   background-color: #fff;
 `;
