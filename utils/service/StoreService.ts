@@ -7,11 +7,11 @@ import {
 } from '../types/index';
 
 class Store {
-  async getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
+  getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
     return axios.get('http://localhost:4000/store');
   }
 
-  async getStore(id: number): Promise<AxiosResponse<StoreResponse>> {
+  getStore(id: number): Promise<AxiosResponse<StoreResponse>> {
     return axios.get(`http://localhost:4000/store/${id}`);
   }
 
