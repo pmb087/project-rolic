@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { AddStoreBody } from '../utils/types';
@@ -48,29 +48,19 @@ function AddStore() {
   };
 
   const addStoreToMap = () => {
-    const {
-      thumbnail,
-      storeName,
-      parkingInfo,
-      address,
-      mango,
-      dining,
-      lat,
-      lng
-    } = addStoreData;
     const content: AddStoreBody = {
-      thumbnail: thumbnail,
-      store_name: storeName,
-      parking_info: parkingInfo,
+      thumbnail: addStoreData.thumbnail,
+      store_name: addStoreData.storeName,
+      parking_info: addStoreData.parkingInfo,
       main_menu: storeMenu,
-      address: address,
+      address: addStoreData.address,
       click_link: {
-        mango: mango,
-        dining: dining
+        mango: addStoreData.mango,
+        dining: addStoreData.dining
       },
       position: {
-        lat: Number(lat),
-        lng: Number(lng)
+        lat: Number(addStoreData.lat),
+        lng: Number(addStoreData.lng)
       }
     };
     StoreService.addStore(content);

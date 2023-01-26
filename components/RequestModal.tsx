@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -13,9 +13,7 @@ function RequestModal({ storeName, requestReason, setModal }: Props) {
       <ModalBox>
         <ModalHeader>
           <ModalHeaderText>{storeName}</ModalHeaderText>
-          <ModalCloseButton onClick={() => setModal(false)}>
-            {'X'}
-          </ModalCloseButton>
+          <ModalCloseButton onClick={() => setModal(false)}>X</ModalCloseButton>
         </ModalHeader>
         <ModalReason>{requestReason}</ModalReason>
       </ModalBox>

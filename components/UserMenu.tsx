@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import React, { useRouter } from 'next/router';
 import styled from 'styled-components';
 import LocalStorageService from '../utils/service/LocalStorageService';
 
@@ -22,7 +22,7 @@ function UserMenu() {
         <MenuBlock onClick={routingPage}>
           {pathname === '/MyPage' ? '지도 페이지' : '마이 페이지'}
         </MenuBlock>
-        <MenuBlock onClick={logoutAccount}>{'로그아웃'}</MenuBlock>
+        <MenuBlock onClick={logoutAccount}>로그아웃</MenuBlock>
       </UserMenuContainer>
     </UserMenuWrap>
   );

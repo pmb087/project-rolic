@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-import useScript from '../utils/hooks/useScript';
+import { useRouter } from 'next/router';
 import jwt_decode from 'jwt-decode';
+import useScript from '../utils/hooks/useScript';
 import {
   GApiResponse,
   DecodedResponse,
   GoogleLoginStyle
 } from '../utils/types/index';
-import { useRouter } from 'next/router';
 import UserService from '../utils/service/UserService';
 import onLoadGoogleLogin from '../utils/hooks/onLoadGoogleLogin';
 import LocalStorageService from '../utils/service/LocalStorageService';
@@ -56,7 +56,7 @@ function GoogleLogin({ option }: Props) {
         bottom: option?.bottom
       }}
       ref={googleSignInButton}
-    ></div>
+    />
   );
 }
 

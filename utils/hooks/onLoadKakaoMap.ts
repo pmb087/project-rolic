@@ -14,7 +14,6 @@ export default function onLoadKakaoMap(
       const map = new window.kakao.maps.Map(container, options);
       for (var i = 0; i < storeResponse.length; i++) {
         const { id, store_name, position } = storeResponse[i];
-        const imageSize = new kakao.maps.Size(24, 35);
         const marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(position.lat, position.lng),

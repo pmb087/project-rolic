@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { useState } from 'react';
 import styled from 'styled-components';
 import UserMenu from './UserMenu';
 
@@ -28,7 +28,7 @@ function UserInfo({ name, picture, isAdmin }: Props) {
         height={80}
         style={{ borderRadius: '40px', cursor: 'pointer' }}
         onClick={handleClicked}
-      ></Image>
+      />
       {isClicked && <UserMenu />}
     </UserInfoContainer>
   );

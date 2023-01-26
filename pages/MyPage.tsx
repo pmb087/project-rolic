@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AddStore from '../components/AddStore';
 import Management from '../components/Management';
@@ -57,9 +57,8 @@ function MyPage({ storeResponse }: Props) {
     if (currentUser === null) {
       route.push('/Map');
       return;
-    } else {
-      getUserInfo(currentUser);
     }
+    getUserInfo(currentUser);
   }, []);
 
   return (

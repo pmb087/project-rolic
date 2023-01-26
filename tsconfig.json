@@ -15,8 +15,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["kakao.maps.d.ts", "gapi", "gapi.auth2"]
+    "types": ["kakao.maps.d.ts", "gapi", "gapi.auth2"],
+    "noUnusedLocals": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server/index.js"],
   "exclude": ["node_modules"]
 }

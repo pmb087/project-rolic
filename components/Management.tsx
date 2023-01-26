@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { RequestGetContent } from '../utils/types';
@@ -20,7 +20,7 @@ function Management() {
     <ManagementContainer>
       <ManagementTitle>문의 관리</ManagementTitle>
       <ManagementPostContainer>
-        <RequestPostLinkContainer header={true}>
+        <RequestPostLinkContainer header>
           <RequestPostNumberHeader>접수 번호</RequestPostNumberHeader>
           <RequestPostNameHeader>요청 가게</RequestPostNameHeader>
         </RequestPostLinkContainer>

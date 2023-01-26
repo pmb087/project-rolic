@@ -1,34 +1,36 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import formatDate from '../utils/hooks/formatDate';
 import StoreService from '../utils/service/StoreService';
 
 function Request() {
-  const [requestReason, setRequestReason] = useState<string>('');
-  const [storeName, setStoreName] = useState<string>('');
-  const buttonDisabled = !(storeName.length >= 2 && requestReason.length >= 10);
+  const [requestReasonData, setRequestReasonData] = useState<string>('');
+  const [storeNameData, setStoreNameData] = useState<string>('');
+  const buttonDisabled = !(
+    storeNameData.length >= 2 && requestReasonData.length >= 10
+  );
 
   const handleRequestReason = (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { value } = event.target;
-    setRequestReason(value);
+    setRequestReasonData(value);
   };
 
   const handleStoreName = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setStoreName(value);
+    setStoreNameData(value);
   };
 
   const sendRequest = () => {
     const content = {
-      storeName: storeName,
-      requestReason: requestReason,
+      storeName: storeNameData,
+      requestReason: requestReasonData,
       postTime: formatDate(new Date())
     };
     StoreService.request(content);
-    setRequestReason('');
-    setStoreName('');
+    setRequestReasonData('');
+    setStoreNameData('');
     alert('가게 추가 요청이 접수되었습니다!');
   };
 
@@ -41,7 +43,7 @@ function Request() {
         <InputWrap>
           <RequestTitle>가게 이름</RequestTitle>
           <StoreNameInput
-            value={storeName}
+            value={storeNameData}
             name='storeName'
             onChange={handleStoreName}
           />
@@ -50,7 +52,7 @@ function Request() {
           <RequestTitle>요청 이유</RequestTitle>
           <RequestReasonTextArea
             rows={10}
-            value={requestReason}
+            value={requestReasonData}
             name='requestReason'
             onChange={handleRequestReason}
           />

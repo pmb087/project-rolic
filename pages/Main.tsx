@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import GoogleLogin from '../components/GoogleLogin';
 import LocalStorageService from '../utils/service/LocalStorageService';
@@ -56,7 +56,7 @@ function Main() {
           }}
         />
         <Image
-          src='/MainClick.svg'
+          src='/mainClick.svg'
           alt='click'
           width={400}
           height={160}
