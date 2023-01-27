@@ -22,7 +22,11 @@ function ClickLink({ type, link }: Props) {
         <ClickLinkWrap>
           <ImageWrap themeColor={theme} isNoData={isNoData}>
             <Image
-              src={type === 'mango' ? '/noDataMangoplate.svg' : '/noDataDiningcode.svg'}
+              src={
+                type === 'mango'
+                  ? '/noDataMangoplate.svg'
+                  : '/noDataDiningcode.svg'
+              }
               alt='linkImage'
               width={150}
               height={50}
