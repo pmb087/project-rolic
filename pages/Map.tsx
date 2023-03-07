@@ -21,7 +21,7 @@ function Map({ storeData }: Props) {
   useRedirect('/LoggedInMap' as unknown as Url);
   useEffect(
     () => useScript('Map', () => onLoadKakaoMap(storeData, setSelectedId)),
-    [storeData]
+    []
   );
 
   return (
