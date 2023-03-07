@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Url } from 'url';
 import AddStore from '../components/AddStore';
@@ -7,9 +7,9 @@ import Navbar from '../components/Navbar';
 import Request from '../components/Request';
 import WishList from '../components/WishList';
 import StoreService from '../utils/service/StoreService';
-import UserService from '../utils/service/UserService';
-import { StoreResponse, UserResponse } from '../utils/types';
+import { StoreResponse } from '../utils/types';
 import useRedirect from '../utils/hooks/useRedirect';
+import useGetUser from '../utils/hooks/useGetUser';
 
 type SelectedMenu =
   | 'WISH_LIST'
@@ -21,36 +21,16 @@ interface Props {
 }
 
 function MyPage({ storeResponse }: Props) {
-  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
-  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');  
+  const handleSelectedMenu = (menu: SelectedMenu) => setSelectedMenu(menu);
   const { WISH_LIST, REQUEST_STORE, MANAGEMENT_REQUEST, ADD_STORE } = {
     WISH_LIST: selectedMenu === 'WISH_LIST',
     REQUEST_STORE: selectedMenu === 'REQUEST_STORE',
     MANAGEMENT_REQUEST: selectedMenu === 'MANAGEMENT_REQUEST',
     ADD_STORE: selectedMenu === 'ADD_STORE'
   };
-
-  const getAdminInfo = async () => {
-    if (currentUserInfo !== undefined) {
-      const { data } = await UserService.getAdmin();
-      setIsAdmin(data.includes(currentUserInfo.id));
-    }
-  };
-
-  const getUserInfo = async (currentUser: string) => {
-    const userInfo = await UserService.getUser(currentUser);
-    setCurrentUserInfo(userInfo.data);
-  };
-
-  const handleSelectedMenu = (menu: SelectedMenu) => {
-    setSelectedMenu(menu);
-  };
-
-  useEffect(() => {
-    getAdminInfo();
-  }, [currentUserInfo]);
-
+  
+  const {isAdmin, currentUserInfo, getUserInfo} = useGetUser(false);
   useRedirect('/Map' as unknown as Url, getUserInfo);
 
   return (
