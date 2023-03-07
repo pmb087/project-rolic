@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import jwt_decode from 'jwt-decode';
+import styled from 'styled-components';
 import useScript from '../utils/hooks/useScript';
 import {
   GApiResponse,
-  DecodedResponse,
-  GoogleLoginStyle
+  DecodedResponse
 } from '../utils/types/index';
 import UserService from '../utils/service/UserService';
 import onLoadGoogleLogin from '../utils/hooks/onLoadGoogleLogin';
@@ -17,11 +17,7 @@ declare global {
   }
 }
 
-interface Props {
-  option?: GoogleLoginStyle;
-}
-
-function GoogleLogin({ option }: Props) {
+function GoogleLogin() {
   const route = useRouter();
   const googleSignInButton = useRef<HTMLDivElement>(null);
 
@@ -42,20 +38,14 @@ function GoogleLogin({ option }: Props) {
   useScript('Login', () => onLoadGoogleLogin(useCredential, googleSignInButton));
 
   return (
-    <div
-      style={{
-        position:
-          option !== undefined
-            ? option.position === undefined
-              ? 'static'
-              : option.position
-            : 'static',
-        left: option?.left,
-        bottom: option?.bottom
-      }}
-      ref={googleSignInButton}
-    />
+    <LoginDiv ref={googleSignInButton}/>
   );
 }
 
 export default React.memo(GoogleLogin);
+
+const LoginDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;

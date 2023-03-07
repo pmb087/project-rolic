@@ -3,21 +3,15 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { Url } from 'url';
 import GoogleLogin from '../components/GoogleLogin';
-import { GoogleLoginStyle } from '../utils/types';
 import useRedirect from '../utils/hooks/useRedirect';
 
 function Main() {
   const {switchUrlByResult, goToMapByLoginStatus} = useRedirect();
-  const googleLoginStyleOption: GoogleLoginStyle = {
-    position: 'absolute',
-    left: 'calc((100% - 400px) / 2)',
-    bottom: '100px'
-  };
   
   useEffect(() => goToMapByLoginStatus('/LoggedInMap' as unknown as Url), []);
 
   return (
-    <>
+    <MainContainer>
       <MainLogoContainer onClick={switchUrlByResult}>
         <Image
           src='/ROLIC_LOGO.svg'
@@ -53,8 +47,8 @@ function Main() {
           }}
         />
       </MainLogoContainer>
-      <GoogleLogin option={googleLoginStyleOption} />
-    </>
+      <GoogleLogin />
+    </MainContainer>
   );
 }
 
@@ -62,4 +56,12 @@ export default Main;
 
 const MainLogoContainer = styled.div`
   position: relative;
+  width: 100%;
+  height: 80vh;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
