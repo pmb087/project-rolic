@@ -21,8 +21,6 @@ function LoggedInMap({ storeResponse }: Props) {
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
-  const {ifLoggedInGetInfoElsePush} = useRedirect();
-
   const getAdminInfo = async () => {
     if (currentUserInfo !== undefined) {
       const { data } = await UserService.getAdmin();
@@ -38,8 +36,7 @@ function LoggedInMap({ storeResponse }: Props) {
   useEffect(() => {
     getAdminInfo();
   }, [currentUserInfo]);
-
-  useEffect(() => ifLoggedInGetInfoElsePush('/Map' as unknown as Url, getUserInfo), []);
+  useRedirect('/Map' as unknown as Url, getUserInfo);
   useEffect(() => useScript('Map', () => onLoadKakaoMap(storeResponse, setSelectedId)), [storeResponse]);
 
   return (

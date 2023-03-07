@@ -18,9 +18,7 @@ function Map({ storeData }: Props) {
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeData[selectedId - 1];
 
-  const {goToMapByLoginStatus} = useRedirect();
-
-  useEffect(() => goToMapByLoginStatus("/LoggedInMap" as unknown as Url), []);
+  useRedirect("/LoggedInMap" as unknown as Url);
   useEffect(() => useScript('Map', () => onLoadKakaoMap(storeData, setSelectedId)), [storeData]);
 
   return (

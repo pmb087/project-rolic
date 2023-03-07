@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Url } from 'url';
+import { useRouter } from 'next/router';
 import GoogleLogin from '../components/GoogleLogin';
 import useRedirect from '../utils/hooks/useRedirect';
 
 function Main() {
-  const {switchUrlByResult, goToMapByLoginStatus} = useRedirect();
-  
-  useEffect(() => goToMapByLoginStatus('/LoggedInMap' as unknown as Url), []);
+  const {push} = useRouter();
+  useRedirect('/LoggedInMap' as unknown as Url);  
 
   return (
     <MainContainer>
-      <MainLogoContainer onClick={switchUrlByResult}>
+      <MainLogoContainer onClick={() => push('/Map')}>
         <Image
           src='/ROLIC_LOGO.svg'
           alt='Rolic Logo'

@@ -31,8 +31,6 @@ function MyPage({ storeResponse }: Props) {
     ADD_STORE: selectedMenu === 'ADD_STORE'
   };
 
-  const {ifLoggedInGetInfoElsePush} = useRedirect();
-
   const getAdminInfo = async () => {
     if (currentUserInfo !== undefined) {
       const { data } = await UserService.getAdmin();
@@ -53,7 +51,7 @@ function MyPage({ storeResponse }: Props) {
     getAdminInfo();
   }, [currentUserInfo]);
 
-  useEffect(() => ifLoggedInGetInfoElsePush('/Map' as unknown as Url, getUserInfo), []);
+  useRedirect('/Map' as unknown as Url, getUserInfo);
 
   return (
     <MyPageContainer>
