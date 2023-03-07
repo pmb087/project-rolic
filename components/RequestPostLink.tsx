@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
 import StoreService from '../utils/service/StoreService';
 import { RequestGetContent } from '../utils/types';
@@ -20,10 +20,10 @@ function RequestPostLink({
   const { id, storeName, postTime, requestReason } = currentRequest;
   const [toggleModal, setToggleModal] = useState(false);
 
-  const deleteRequestData = useCallback(() => {
+  const deleteRequestData = () => {
     StoreService.deleteRequest(id);
     setRequest(allRequest!.filter((el) => el.id !== id));
-  }, []);
+  };
 
   return (
     <>

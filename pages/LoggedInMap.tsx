@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Url } from 'url';
 import StoreService from '../utils/service/StoreService';
-import { StoreResponse, UserResponse } from '../utils/types/index';
+import { StoreResponse } from '../utils/types/index';
 import NotSelected from '../components/NotSelected';
-import UserService from '../utils/service/UserService';
-import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
+import onLoadKakaoMap from '../utils/func/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
 import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
 import Navbar from '../components/Navbar';
 import useRedirect from '../utils/hooks/useRedirect';
+import useGetUser from '../utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];
@@ -18,29 +18,13 @@ interface Props {
 function LoggedInMap({ storeResponse }: Props) {
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeResponse[selectedId - 1];
-  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const { isAdmin, currentUserInfo, getUserInfo } = useGetUser(false);
 
-  const {ifLoggedInGetInfoElsePush} = useRedirect();
-
-  const getAdminInfo = async () => {
-    if (currentUserInfo !== undefined) {
-      const { data } = await UserService.getAdmin();
-      setIsAdmin(data.includes(currentUserInfo.id));
-    }
-  };
-
-  const getUserInfo = async (currentUser: string) => {
-    const userInfo = await UserService.getUser(currentUser);
-    setCurrentUserInfo(userInfo.data);
-  };
-
-  useEffect(() => {
-    getAdminInfo();
-  }, [currentUserInfo]);
-
-  useEffect(() => ifLoggedInGetInfoElsePush('/Map' as unknown as Url, getUserInfo), []);
-  useEffect(() => useScript('Map', () => onLoadKakaoMap(storeResponse, setSelectedId)), [storeResponse]);
+  useRedirect('/Map' as unknown as Url, getUserInfo);
+  useEffect(
+    () => useScript('Map', () => onLoadKakaoMap(storeResponse, setSelectedId)),
+    [storeResponse]
+  );
 
   return (
     <MapPageContainer>

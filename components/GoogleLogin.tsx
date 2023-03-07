@@ -3,12 +3,9 @@ import { useRouter } from 'next/router';
 import jwt_decode from 'jwt-decode';
 import styled from 'styled-components';
 import useScript from '../utils/hooks/useScript';
-import {
-  GApiResponse,
-  DecodedResponse
-} from '../utils/types/index';
+import { GApiResponse, DecodedResponse } from '../utils/types/index';
 import UserService from '../utils/service/UserService';
-import onLoadGoogleLogin from '../utils/hooks/onLoadGoogleLogin';
+import onLoadGoogleLogin from '../utils/func/onLoadGoogleLogin';
 import LocalStorageService from '../utils/service/LocalStorageService';
 
 declare global {
@@ -35,11 +32,11 @@ function GoogleLogin() {
     route.push('/LoggedInMap');
   };
 
-  useScript('Login', () => onLoadGoogleLogin(useCredential, googleSignInButton));
-
-  return (
-    <LoginDiv ref={googleSignInButton}/>
+  useScript('Login', () =>
+    onLoadGoogleLogin(useCredential, googleSignInButton)
   );
+
+  return <LoginDiv ref={googleSignInButton} />;
 }
 
 export default React.memo(GoogleLogin);

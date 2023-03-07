@@ -6,7 +6,7 @@ import { StoreResponse } from '../utils/types/index';
 import StoreInfo from '../components/StoreInfo';
 import NotSelected from '../components/NotSelected';
 import useScript from '../utils/hooks/useScript';
-import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
+import onLoadKakaoMap from '../utils/func/onLoadKakaoMap';
 import Navbar from '../components/Navbar';
 import useRedirect from '../utils/hooks/useRedirect';
 
@@ -18,10 +18,11 @@ function Map({ storeData }: Props) {
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeData[selectedId - 1];
 
-  const {goToMapByLoginStatus} = useRedirect();
-
-  useEffect(() => goToMapByLoginStatus("/LoggedInMap" as unknown as Url), []);
-  useEffect(() => useScript('Map', () => onLoadKakaoMap(storeData, setSelectedId)), [storeData]);
+  useRedirect('/LoggedInMap' as unknown as Url);
+  useEffect(
+    () => useScript('Map', () => onLoadKakaoMap(storeData, setSelectedId)),
+    []
+  );
 
   return (
     <MapPageContainer>

@@ -10,12 +10,12 @@ function Info({ title, content }: Props) {
   return (
     <InfoWrap>
       <InfoTitle>{title}</InfoTitle>
-      {!Array.isArray(content) ? (
-        <InfoContent>{content}</InfoContent>
-      ) : (
+      {Array.isArray(content) ? (
         content.map((item: string) => (
           <InfoContent key={item}>{item}</InfoContent>
         ))
+      ) : (
+        <InfoContent>{content}</InfoContent>
       )}
     </InfoWrap>
   );

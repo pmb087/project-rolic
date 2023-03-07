@@ -4,12 +4,10 @@ import LocalStorageService from '../utils/service/LocalStorageService';
 
 function UserMenu() {
   const { pathname, push } = useRouter();
+  const target = pathname === '/MyPage' ? '/LoggedInMap' : '/MyPage';
+  const menuName = pathname === '/MyPage' ? '지도 페이지' : '마이 페이지';
 
-  const routingPage = () => {
-    const target = pathname === '/MyPage' ? '/LoggedInMap' : '/MyPage';
-    push(target);
-  };
-
+  const routingPage = () => push(target);
   const logoutAccount = () => {
     LocalStorageService.remove('user');
     push('/Main');
@@ -19,9 +17,7 @@ function UserMenu() {
     <UserMenuWrap>
       <Triangle />
       <UserMenuContainer>
-        <MenuBlock onClick={routingPage}>
-          {pathname === '/MyPage' ? '지도 페이지' : '마이 페이지'}
-        </MenuBlock>
+        <MenuBlock onClick={routingPage}>{menuName}</MenuBlock>
         <MenuBlock onClick={logoutAccount}>로그아웃</MenuBlock>
       </UserMenuContainer>
     </UserMenuWrap>

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar';
 import StoreService from '../../utils/service/StoreService';
-import { StoreResponse, UserResponse } from '../../utils/types';
+import { StoreResponse } from '../../utils/types';
 import StoreInfoLarge from '../../components/StoreInfoLarge';
-import UserService from '../../utils/service/UserService';
-import LocalStorageService from '../../utils/service/LocalStorageService';
+import useGetUser from '../../utils/hooks/useGetUser';
 
 interface Props {
   storeData: StoreResponse;
@@ -14,34 +13,10 @@ interface Props {
 
 function StoreInfoPage({ storeData }: Props) {
   const { push } = useRouter();
-  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
-  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const goToMyPage = () => push('/MyPage');
 
-  const getAdminInfo = async () => {
-    if (currentUserInfo !== undefined) {
-      const { data } = await UserService.getAdmin();
-      setIsAdmin(data.includes(currentUserInfo.id));
-    }
-  };
-
-  const goToMyPage = () => {
-    push('/MyPage');
-  };
-
-  const getUserInfo = async (currentUser: string) => {
-    const userInfo = await UserService.getUser(currentUser);
-    setCurrentUserInfo(userInfo.data);
-  };
-
-  useEffect(() => {
-    getAdminInfo();
-  }, [currentUserInfo]);
-
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser !== null) getUserInfo(currentUser);
-  }, []);
-
+  const {isAdmin, currentUserInfo } = useGetUser(true);
+  
   return (
     <StoreInfoContainer>
       <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
