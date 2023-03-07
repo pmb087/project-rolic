@@ -76,6 +76,9 @@
     ],
     "no-nested-ternary": "off",
     "no-restricted-globals": "off",
-    "react/jsx-props-no-spreading": ["off"]
+    "react/jsx-props-no-spreading": ["off"],
+    "prettier/prettier":["off",{
+      "endOfLine":"auto"
+    }]
   }
 }
