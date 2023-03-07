@@ -39,9 +39,7 @@ function GoogleLogin({ option }: Props) {
     route.push('/LoggedInMap');
   };
 
-  useScript('https://accounts.google.com/gsi/client', () =>
-    onLoadGoogleLogin(useCredential, googleSignInButton)
-  );
+  useScript('Login', () => onLoadGoogleLogin(useCredential, googleSignInButton));
 
   return (
     <div

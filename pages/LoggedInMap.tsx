@@ -16,7 +16,6 @@ interface Props {
 }
 
 function LoggedInMap({ storeResponse }: Props) {
-  const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
   const route = useRouter();
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeResponse[selectedId - 1];
@@ -48,10 +47,7 @@ function LoggedInMap({ storeResponse }: Props) {
     getUserInfo(currentUser);
   }, []);
 
-  useEffect(() => {
-    const scriptSrc = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`;
-    useScript(scriptSrc, () => onLoadKakaoMap(storeResponse, setSelectedId));
-  }, [storeResponse]);
+  useEffect(() => useScript('Map', () => onLoadKakaoMap(storeResponse, setSelectedId)), [storeResponse]);
 
   return (
     <MapPageContainer>
