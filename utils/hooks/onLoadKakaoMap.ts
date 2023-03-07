@@ -12,10 +12,10 @@ export default function onLoadKakaoMap(
         level: 9
       };
       const map = new window.kakao.maps.Map(container, options);
-      for (var i = 0; i < storeResponse.length; i++) {
+      for (let i = 0; i < storeResponse.length; i++) {
         const { id, store_name, position } = storeResponse[i];
         const marker = new kakao.maps.Marker({
-          map: map,
+          map,
           position: new kakao.maps.LatLng(position.lat, position.lng),
           title: store_name
         });
@@ -35,13 +35,13 @@ export default function onLoadKakaoMap(
             background-color: #fff;
             ">${store_name}</div>`
         });
-        kakao.maps.event.addListener(marker, 'mouseover', function () {
+        kakao.maps.event.addListener(marker, 'mouseover', () => {
           infowindow.open(map, marker);
         });
-        kakao.maps.event.addListener(marker, 'mouseout', function () {
+        kakao.maps.event.addListener(marker, 'mouseout', () => {
           infowindow.close();
         });
-        kakao.maps.event.addListener(marker, 'click', function () {
+        kakao.maps.event.addListener(marker, 'click', () => {
           setSelectedId(id);
         });
       }
