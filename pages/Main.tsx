@@ -1,38 +1,24 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Url } from 'url';
 import GoogleLogin from '../components/GoogleLogin';
-import LocalStorageService from '../utils/service/LocalStorageService';
 import { GoogleLoginStyle } from '../utils/types';
+import useRedirect from '../utils/hooks/useRedirect';
 
 function Main() {
-  const route = useRouter();
+  const {switchUrlByResult, goToMapByLoginStatus} = useRedirect();
   const googleLoginStyleOption: GoogleLoginStyle = {
     position: 'absolute',
     left: 'calc((100% - 400px) / 2)',
     bottom: '100px'
   };
-
-  const goToMap = () => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser !== null) {
-      route.push('/LoggedInMap');
-    } else {
-      route.push('/Map');
-    }
-  };
-
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser !== null) {
-      route.push('/LoggedInMap');
-    }
-  }, []);
+  
+  useEffect(() => goToMapByLoginStatus('/LoggedInMap' as unknown as Url), []);
 
   return (
     <>
-      <MainLogoContainer onClick={goToMap}>
+      <MainLogoContainer onClick={switchUrlByResult}>
         <Image
           src='/ROLIC_LOGO.svg'
           alt='Rolic Logo'

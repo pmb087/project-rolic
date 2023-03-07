@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Url } from 'url';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse, UserResponse } from '../utils/types/index';
 import NotSelected from '../components/NotSelected';
@@ -8,19 +8,20 @@ import UserService from '../utils/service/UserService';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import useScript from '../utils/hooks/useScript';
 import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
-import LocalStorageService from '../utils/service/LocalStorageService';
 import Navbar from '../components/Navbar';
+import useRedirect from '../utils/hooks/useRedirect';
 
 interface Props {
   storeResponse: StoreResponse[];
 }
 
 function LoggedInMap({ storeResponse }: Props) {
-  const route = useRouter();
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeResponse[selectedId - 1];
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const {ifLoggedInGetInfoElsePush} = useRedirect();
 
   const getAdminInfo = async () => {
     if (currentUserInfo !== undefined) {
@@ -38,15 +39,7 @@ function LoggedInMap({ storeResponse }: Props) {
     getAdminInfo();
   }, [currentUserInfo]);
 
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser === null) {
-      route.push('/Map');
-      return;
-    }
-    getUserInfo(currentUser);
-  }, []);
-
+  useEffect(() => ifLoggedInGetInfoElsePush('/Map' as unknown as Url, getUserInfo), []);
   useEffect(() => useScript('Map', () => onLoadKakaoMap(storeResponse, setSelectedId)), [storeResponse]);
 
   return (

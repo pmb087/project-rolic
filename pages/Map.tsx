@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Url } from 'url';
 import StoreService from '../utils/service/StoreService';
 import { StoreResponse } from '../utils/types/index';
 import StoreInfo from '../components/StoreInfo';
@@ -8,32 +8,20 @@ import NotSelected from '../components/NotSelected';
 import useScript from '../utils/hooks/useScript';
 import onLoadKakaoMap from '../utils/hooks/onLoadKakaoMap';
 import Navbar from '../components/Navbar';
-import LocalStorageService from '../utils/service/LocalStorageService';
+import useRedirect from '../utils/hooks/useRedirect';
 
 interface Props {
   storeData: StoreResponse[];
 }
 
-// 해당 페이지는 비로그인으로 지도에 접근했을 경우 제공되는 페이지
-// 따라서 사용자의 행동에 따른 서버 업데이트가 발생하는 경우는 없으며 그렇기에 StaticProps를 통해 빌드할 것
-// 물론 그에 따라서 SWR을 사용하는 이유는 없기 때문에 캐싱하지 않음
-//  ㄴ 정적 빌드 후 배포 한다면 애초에 페이지가 따로 생성되므로 캐싱할 필요가 없음.
 function Map({ storeData }: Props) {
-  const NEXT_PUBLIC_KAKAO_KEY = process.env.NEXT_PUBLIC_KAKAO_KEY;
-  const { push } = useRouter();
   const [selectedId, setSelectedId] = useState(-1);
   const selectedStore = storeData[selectedId - 1];
 
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser === null) return;
-    push('/LoggedInMap');
-  }, []);
+  const {goToMapByLoginStatus} = useRedirect();
 
-  useEffect(() => {
-    const scriptSrc = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${NEXT_PUBLIC_KAKAO_KEY}&autoload=false`;
-    useScript(scriptSrc, () => onLoadKakaoMap(storeData, setSelectedId));
-  }, [storeData]);
+  useEffect(() => goToMapByLoginStatus("/LoggedInMap" as unknown as Url), []);
+  useEffect(() => useScript('Map', () => onLoadKakaoMap(storeData, setSelectedId)), [storeData]);
 
   return (
     <MapPageContainer>

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { Url } from 'url';
 import AddStore from '../components/AddStore';
 import Management from '../components/Management';
 import Navbar from '../components/Navbar';
 import Request from '../components/Request';
 import WishList from '../components/WishList';
-import LocalStorageService from '../utils/service/LocalStorageService';
 import StoreService from '../utils/service/StoreService';
 import UserService from '../utils/service/UserService';
 import { StoreResponse, UserResponse } from '../utils/types';
+import useRedirect from '../utils/hooks/useRedirect';
 
 type SelectedMenu =
   | 'WISH_LIST'
@@ -21,7 +21,6 @@ interface Props {
 }
 
 function MyPage({ storeResponse }: Props) {
-  const route = useRouter();
   const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
   const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -31,6 +30,8 @@ function MyPage({ storeResponse }: Props) {
     MANAGEMENT_REQUEST: selectedMenu === 'MANAGEMENT_REQUEST',
     ADD_STORE: selectedMenu === 'ADD_STORE'
   };
+
+  const {ifLoggedInGetInfoElsePush} = useRedirect();
 
   const getAdminInfo = async () => {
     if (currentUserInfo !== undefined) {
@@ -52,14 +53,7 @@ function MyPage({ storeResponse }: Props) {
     getAdminInfo();
   }, [currentUserInfo]);
 
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser === null) {
-      route.push('/Map');
-      return;
-    }
-    getUserInfo(currentUser);
-  }, []);
+  useEffect(() => ifLoggedInGetInfoElsePush('/Map' as unknown as Url, getUserInfo), []);
 
   return (
     <MyPageContainer>
