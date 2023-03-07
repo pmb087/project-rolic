@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import LocalStorageService from '../utils/service/LocalStorageService';
-import UserService from '../utils/service/UserService';
-import { StoreResponse, UserResponse } from '../utils/types';
+import { StoreResponse } from '../utils/types';
 import WishStore from './WishStore';
+import useGetUser from '../utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];
 }
 
 function WishList({ storeResponse }: Props) {
-  const [currentUserInfo, setCurrentUserInfo] = useState<UserResponse>();
+  const { currentUserInfo } = useGetUser(true);
   const filterdStore = storeResponse.filter((el) =>
     currentUserInfo?.like_store.includes(el.id)
   );
-
-  const getUserInfo = async (currentUser: string) => {
-    const userInfo = await UserService.getUser(currentUser);
-    setCurrentUserInfo(userInfo.data);
-  };
-
-  useEffect(() => {
-    const currentUser = LocalStorageService.get<string>('user');
-    if (currentUser !== null) getUserInfo(currentUser);
-  }, []);
 
   return (
     <WishListContainer>

@@ -20,10 +20,10 @@ function RequestPostLink({
   const { id, storeName, postTime, requestReason } = currentRequest;
   const [toggleModal, setToggleModal] = useState(false);
 
-  const deleteRequestData = useCallback(() => {
+  const deleteRequestData = () => {
     StoreService.deleteRequest(id);
     setRequest(allRequest!.filter((el) => el.id !== id));
-  }, []);
+  };
 
   return (
     <>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Info from './Info';
 import ClickLink from './ClickLink';
 import { StoreResponse, UserResponse } from '../utils/types/index';
-import UserService from '../utils/service/UserService';
+import useLikeStore from '../utils/hooks/useLikeStore';
 
 interface Props {
   store: StoreResponse;
@@ -22,32 +22,8 @@ function LoggedInStoreInfo({ store, userInfo, selectedId }: Props) {
     parking_info,
     click_link
   } = store;
-  const [userData, setUserData] = useState<UserResponse>(userInfo);
-  const [storeLike, setStoreLike] = useState<boolean>(false);
 
-  const handleLike = async () => {
-    if (!storeLike) {
-      const { data } = await UserService.likeStore(
-        userData.id,
-        id,
-        userData.like_store
-      );
-      setUserData(data);
-      setStoreLike(data.like_store.includes(id));
-    } else {
-      const { data } = await UserService.unLikeStore(
-        userData.id,
-        id,
-        userData.like_store
-      );
-      setUserData(data);
-      setStoreLike(data.like_store.includes(id));
-    }
-  };
-
-  useEffect(() => {
-    setStoreLike(userData.like_store.includes(id));
-  }, [selectedId]);
+  const { handleLike, storeLike } = useLikeStore(userInfo, id, selectedId);
 
   return (
     <StoreInfoWrap>

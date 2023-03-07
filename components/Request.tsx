@@ -1,36 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import formatDate from '../utils/func/formatDate';
+import useHandleInput from '../utils/hooks/useHandleInput';
 import StoreService from '../utils/service/StoreService';
 
 function Request() {
-  const [requestReasonData, setRequestReasonData] = useState<string>('');
-  const [storeNameData, setStoreNameData] = useState<string>('');
-  const buttonDisabled = !(
-    storeNameData.length >= 2 && requestReasonData.length >= 10
-  );
+  const { input, handleInput, setInput } = useHandleInput();
+  const {
+    input: textarea,
+    handleInput: handleTextarea,
+    setInput: setTextarea
+  } = useHandleInput();
 
-  const handleRequestReason = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const { value } = event.target;
-    setRequestReasonData(value);
-  };
-
-  const handleStoreName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setStoreNameData(value);
-  };
+  const buttonDisabled = !(input.length >= 2 && textarea.length >= 10);
 
   const sendRequest = () => {
     const content = {
-      storeName: storeNameData,
-      requestReason: requestReasonData,
+      storeName: input,
+      requestReason: textarea,
       postTime: formatDate(new Date())
     };
+
     StoreService.request(content);
-    setRequestReasonData('');
-    setStoreNameData('');
+
+    setInput('');
+    setTextarea('');
+
     alert('가게 추가 요청이 접수되었습니다!');
   };
 
@@ -43,18 +38,18 @@ function Request() {
         <InputWrap>
           <RequestTitle>가게 이름</RequestTitle>
           <StoreNameInput
-            value={storeNameData}
+            value={input}
             name='storeName'
-            onChange={handleStoreName}
+            onChange={handleInput}
           />
         </InputWrap>
         <InputWrap>
           <RequestTitle>요청 이유</RequestTitle>
           <RequestReasonTextArea
             rows={10}
-            value={requestReasonData}
+            value={textarea}
             name='requestReason'
-            onChange={handleRequestReason}
+            onChange={handleTextarea}
           />
         </InputWrap>
         <SubmitRequset disabled={buttonDisabled} onClick={sendRequest}>

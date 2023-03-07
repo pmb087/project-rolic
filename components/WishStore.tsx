@@ -12,9 +12,7 @@ function WishStore({ storeInfo }: Props) {
   const { push } = useRouter();
   const { id, thumbnail, store_name } = storeInfo;
 
-  const goToStoreInfo = () => {
-    push(`/StoreInfo/${id}`);
-  };
+  const goToStoreInfo = () => push(`/StoreInfo/${id}`);
 
   return (
     <WishStoreContainer onClick={goToStoreInfo}>

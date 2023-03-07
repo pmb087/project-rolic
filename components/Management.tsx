@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import StoreService from '../utils/service/StoreService';
+import useGetRequest from '../utils/hooks/useGetRequest';
 import { RequestGetContent } from '../utils/types';
 import RequestPostLink from './RequestPostLink';
 
 function Management() {
-  const [requestData, setRequestData] = useState<RequestGetContent[]>();
-
-  const getRequestData = async () => {
-    const { data } = await StoreService.getRequest();
-    setRequestData(data);
-  };
-
-  useEffect(() => {
-    getRequestData();
-  }, []);
+  const { requestData, setRequestData } = useGetRequest();
 
   return (
     <ManagementContainer>
