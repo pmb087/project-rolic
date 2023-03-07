@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import formatDate from '../utils/hooks/formatDate';
+import formatDate from '../utils/func/formatDate';
 import StoreService from '../utils/service/StoreService';
 
 function Request() {
