@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import client from './CustomAxios';
 import { UserResponse } from '../types/index';
 
 class User {
@@ -7,8 +8,8 @@ class User {
     name: string,
     pictureURI: string
   ): Promise<AxiosResponse<UserResponse>> {
-    return axios.post(
-      'https://project-rolic-json-server.herokuapp.com/users',
+    return client.post(
+      '/users',
       {
         id: email,
         name: name,
@@ -24,13 +25,11 @@ class User {
   }
 
   getUser(email: string): Promise<AxiosResponse<UserResponse>> {
-    return axios.get(
-      `https://project-rolic-json-server.herokuapp.com/users/${email}`
-    );
+    return client.get(`/users/${email}`);
   }
 
   getAdmin(): Promise<AxiosResponse<string[]>> {
-    return axios.get('https://project-rolic-json-server.herokuapp.com/admin');
+    return client.get('/admin');
   }
 
   likeStore(
@@ -38,8 +37,8 @@ class User {
     storeId: number,
     likeStore: number[]
   ): Promise<AxiosResponse<UserResponse>> {
-    return axios.patch(
-      `https://project-rolic-json-server.herokuapp.com/users/${userEmail}`,
+    return client.patch(
+      `/users/${userEmail}`,
       {
         like_store: [...likeStore, storeId]
       },
@@ -52,8 +51,8 @@ class User {
     storeId: number,
     likeStoreArr: number[]
   ): Promise<AxiosResponse<UserResponse>> {
-    return axios.patch(
-      `https://project-rolic-json-server.herokuapp.com/users/${userEmail}`,
+    return client.patch(
+      `/users/${userEmail}`,
       {
         like_store: likeStoreArr.filter((el) => el !== storeId)
       },
