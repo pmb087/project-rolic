@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Url } from 'url';
-import StoreService from '../utils/service/StoreService';
-import { StoreResponse } from '../utils/types/index';
-import NotSelected from '../components/NotSelected';
-import onLoadKakaoMap from '../utils/func/onLoadKakaoMap';
-import useScript from '../utils/hooks/useScript';
-import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
-import Navbar from '../components/Navbar';
-import useRedirect from '../utils/hooks/useRedirect';
-import useGetUser from '../utils/hooks/useGetUser';
+import NotSelected from '@/components/NotSelected';
+import LoggedInStoreInfo from '@/components/LoggedInStoreInfo';
+import Navbar from '@/components/Navbar';
+import StoreService from '@/utils/service/StoreService';
+import { StoreResponse } from '@/utils/types/index';
+import onLoadKakaoMap from '@/utils/func/onLoadKakaoMap';
+import useScript from '@/utils/hooks/useScript';
+import useRedirect from '@/utils/hooks/useRedirect';
+import useGetUser from '@/utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];
@@ -76,21 +76,20 @@ const LeftContainer = styled.aside`
 `;
 
 const RightContainer = styled.aside`
+  overflow-y: scroll;
   padding: 20px;
-  box-shadow: 0 0 3px 3px #c0c0c0;
-  border-radius: 5px 0 0 5px;
   max-width: 460px;
   min-width: 460px;
   max-height: 100vh;
-  overflow-y: scroll;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 0 3px 3px ${(props) => props.theme.lightGray};
 
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-thumb {
     height: 30%;
-    background: #ff904d;
-
+    background: ${(props) => props.theme.mangoOrange};
     border-radius: 10px;
   }
   ::-webkit-scrollbar-track {
@@ -101,5 +100,5 @@ const RightContainer = styled.aside`
 const MapWrap = styled.div`
   width: 940px;
   height: 910px;
-  border: 2px solid #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
 `;

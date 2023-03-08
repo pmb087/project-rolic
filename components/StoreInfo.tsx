@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import Info from './Info';
-import ClickLink from './ClickLink';
-import { StoreResponse } from '../utils/types/index';
+import Image from 'next/image';
+import Info from '@/components/Info';
+import ClickLink from '@/components/ClickLink';
+import { StoreResponse } from '@/utils/types/index';
 
 interface Props {
   store: StoreResponse;
@@ -54,18 +54,18 @@ const StoreName = styled.div`
   justify-content: center;
   margin: 35px 0 50px;
   width: 100%;
+  color: ${(props) => props.theme.darkGray};
   font-size: 50px;
-  color: #505050;
   font-weight: bold;
 `;
 
 const ClickLinkContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 34px;
   font-weight: bold;
-  color: #505050;
-  margin-bottom: 10px;
   letter-spacing: 1.2px;
 `;
 

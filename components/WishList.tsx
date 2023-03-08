@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import { StoreResponse } from '../utils/types';
-import WishStore from './WishStore';
-import useGetUser from '../utils/hooks/useGetUser';
+import Image from 'next/image';
+import WishStore from '@/components/WishStore';
+import { StoreResponse } from '@/utils/types';
+import useGetUser from '@/utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];
@@ -52,11 +52,11 @@ const WishListHeader = styled.div`
 `;
 
 const WishListHeaderText = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
   margin: 10px;
   padding: 5px 5px 5px 15px;
   color: #404040;
+  font-size: 36px;
+  font-weight: bold;
 `;
 
 const WishStoreContainer = styled.div`

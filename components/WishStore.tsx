@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { StoreResponse } from '../utils/types';
+import { StoreResponse } from '@/utils/types';
 
 interface Props {
   storeInfo: StoreResponse;
@@ -34,20 +34,20 @@ const WishStoreContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
   margin: 10px;
+  padding: 15px;
   background-color: #f0f0f0;
-  border: 3px solid #ff904dbf;
+  border: 3px solid ${(props) => props.theme.opacityOrange};
   border-radius: 10px;
   :hover {
-    background-color: #ff904dbf;
+    background-color: ${(props) => props.theme.opacityOrange};
     cursor: pointer;
   }
 `;
 
 const WishStoreName = styled.h1`
   margin-top: 20px;
+  color: #606060;
   font-size: 24px;
   font-weight: bold;
-  color: #606060;
 `;

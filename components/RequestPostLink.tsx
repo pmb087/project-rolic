@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import styled from 'styled-components';
-import StoreService from '../utils/service/StoreService';
-import { RequestGetContent } from '../utils/types';
-import RequestModal from './RequestModal';
+import RequestModal from '@/components/RequestModal';
+import StoreService from '@/utils/service/StoreService';
+import { RequestGetContent } from '@/utils/types';
 
 interface Props {
   currentRequest: RequestGetContent;
@@ -57,10 +57,10 @@ const RequestPostLinkContainer = styled.div<PostHeader>`
   align-items: center;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid ${(props) => props.theme.lightGray};
+  color: #444444;
   font-size: 20px;
   font-weight: 600;
-  color: #444444;
   :hover {
     background-color: ${({ header }) => (header ? 'none' : '#ff904d1a')};
   }
@@ -71,19 +71,19 @@ const RequestPostTime = styled.p`
 `;
 
 const DeleteButton = styled.button`
+  margin-right: 10px;
   width: 50px;
   min-width: 50px;
   height: 30px;
-  margin-right: 10px;
-  border: 2px solid #ff904d;
   background-color: #fff;
-  color: #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
+  border-radius: 5px;
+  outline: none;
+  color: ${(props) => props.theme.mangoOrange};
   font-size: 18px;
   font-weight: 600;
-  outline: none;
-  border-radius: 5px;
   :hover {
-    background-color: #ff904d;
+    background-color: ${(props) => props.theme.mangoOrange};
     color: #fff;
     cursor: pointer;
   }
@@ -92,7 +92,7 @@ const DeleteButton = styled.button`
 const RequestPostName = styled.p`
   width: calc(100% - 120px - 120px);
   :hover {
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
     cursor: pointer;
   }
 `;

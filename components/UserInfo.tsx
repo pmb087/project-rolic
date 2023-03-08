@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import UserMenu from './UserMenu';
+import Image from 'next/image';
+import UserMenu from '@/components/UserMenu';
 
 interface Props {
   name: string;
@@ -44,9 +44,9 @@ const UserInfoContainer = styled.div`
 `;
 
 const WelcomeText = styled.h2`
+  margin-right: 15px;
+  color: black;
   font-size: 30px;
   font-weight: bolder;
   letter-spacing: 1.2px;
-  color: #000;
-  margin-right: 15px;
 `;

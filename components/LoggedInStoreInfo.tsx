@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Info from './Info';
-import ClickLink from './ClickLink';
-import { StoreResponse, UserResponse } from '../utils/types/index';
-import useLikeStore from '../utils/hooks/useLikeStore';
+import Info from '@/components/Info';
+import ClickLink from '@/components/ClickLink';
+import { StoreResponse, UserResponse } from '@/utils/types/index';
+import useLikeStore from '@/utils/hooks/useLikeStore';
 
 interface Props {
   store: StoreResponse;
@@ -68,18 +68,18 @@ const StoreName = styled.div`
   justify-content: center;
   margin: 35px 0 50px;
   width: 100%;
+  color: ${(props) => props.theme.darkGray};
   font-size: 50px;
-  color: #505050;
   font-weight: bold;
 `;
 
 const ClickLinkContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 34px;
   font-weight: bold;
-  color: #505050;
-  margin-bottom: 10px;
   letter-spacing: 1.2px;
 `;
 
@@ -96,15 +96,16 @@ const StoreLike = styled.div<StoreLikeType>`
   margin: 0 50px 50px;
   width: calc(100% - 100px);
   height: 60px;
+  background-color: ${({ storeLike, theme }) =>
+    storeLike ? theme.mangoOrange : '#fff'};
+  border: 3px solid ${(props) => props.theme.mangoOrange};
   border-radius: 15px;
-  border: 3px solid #ff904d;
-  background-color: ${({ storeLike }) => (storeLike ? '#ff904d' : '#fff')};
+  color: ${({ storeLike, theme }) => (!storeLike ? theme.mangoOrange : '#fff')};
   font-size: 24px;
   font-weight: bolder;
-  color: ${({ storeLike }) => (!storeLike ? '#ff904d' : '#fff')};
   letter-spacing: 3px;
   :hover {
     background-color: #ffccac;
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
   }
 `;

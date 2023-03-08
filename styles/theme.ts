@@ -1,10 +1,9 @@
 const theme = {
-  black: '#000000',
-  white: '#FFFFFF',
-  lightGrey: '#B0B0B0',
-  middleGrey: '#717171',
-  deepGrey: '#222222',
-  hoverGrey: '#DBDBDB'
+  darkGray: '#505050',
+  normalGray: '#808080',
+  mangoOrange: '#ff904d',
+  lightGray: '#c0c0c0',
+  opacityOrange: '#ff904dbf'
 };
 
 export default theme;

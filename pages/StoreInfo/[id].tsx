@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import Navbar from '../../components/Navbar';
-import StoreService from '../../utils/service/StoreService';
-import { StoreResponse } from '../../utils/types';
-import StoreInfoLarge from '../../components/StoreInfoLarge';
-import useGetUser from '../../utils/hooks/useGetUser';
+import Navbar from '@/components/Navbar';
+import StoreInfoLarge from '@/components/StoreInfoLarge';
+import StoreService from '@/utils/service/StoreService';
+import { StoreResponse } from '@/utils/types';
+import useGetUser from '@/utils/hooks/useGetUser';
 
 interface Props {
   storeData: StoreResponse;
@@ -15,8 +15,8 @@ function StoreInfoPage({ storeData }: Props) {
   const { push } = useRouter();
   const goToMyPage = () => push('/MyPage');
 
-  const {isAdmin, currentUserInfo } = useGetUser(true);
-  
+  const { isAdmin, currentUserInfo } = useGetUser(true);
+
   return (
     <StoreInfoContainer>
       <Navbar isAdmin={isAdmin} currentUserInfo={currentUserInfo} />
@@ -79,8 +79,8 @@ const GoToMyPage = styled.button`
   border-radius: 25px;
   font-size: 50px;
   :hover {
-    background-color: #ff904d;
-    border: 3px solid #ff904d;
+    background-color: ${(props) => props.theme.mangoOrange};
+    border: 3px solid ${(props) => props.theme.mangoOrange};
     color: #fff;
     cursor: pointer;
   }
@@ -88,15 +88,15 @@ const GoToMyPage = styled.button`
 
 const TitleText = styled.h1`
   margin: 20px 20px 20px 50px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 36px;
   font-weight: bolder;
-  color: #505050;
 `;
 
 const StoreInfoWrap = styled.div`
-  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
+  align-self: center;
   width: 50%;
   min-width: 680px;
-  align-self: center;
   background-color: #fff;
+  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
 `;

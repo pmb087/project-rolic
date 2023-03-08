@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import styled from 'styled-components';
 
 interface Props {
   type: string;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 function ClickLink({ type, link }: Props) {
-  const theme = type === 'mango' ? '#ff914d' : '#0ac7ce';
+  const theme = type === 'mango' ? '#ff904d' : '#0ac7ce';
   const isNoData = link === 'no_data';
 
   const noDataClick = () => {
@@ -70,17 +70,17 @@ const ImageWrap = styled.div<Theme>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
   width: 180px;
   height: 112.5px;
-  border-radius: 20px;
+  background-color: #fff;
   border: 3px solid
     ${({ themeColor, isNoData }) => (isNoData ? '#a0a0a0' : themeColor)};
+  border-radius: 20px;
 `;
 
 const NoLinkWrap = styled.button`
-  cursor: pointer;
-  outline: none;
   background-color: #fff;
   border: none;
+  outline: none;
+  cursor: pointer;
 `;
