@@ -17,7 +17,7 @@ function RequestPost({ title, content }: Props) {
 export default RequestPost;
 
 const RequestPostContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;

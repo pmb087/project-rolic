@@ -74,11 +74,11 @@ const RequestHeader = styled.div`
 `;
 
 const RequestHeaderText = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
   margin: 10px;
   padding: 5px 5px 5px 15px;
   color: #404040;
+  font-size: 36px;
+  font-weight: bold;
 `;
 
 const RequestContentContainer = styled.div`
@@ -94,30 +94,30 @@ const InputWrap = styled.div`
 `;
 
 const RequestTitle = styled.h2`
+  margin-bottom: 15px;
   font-size: 26px;
   font-weight: 600;
   letter-spacing: 2px;
-  margin-bottom: 15px;
 `;
 
 const StoreNameInput = styled.input`
   padding: 20px;
   width: 400px;
-  font-size: 18px;
-  font-weight: 600;
   border: 2px solid ${(props) => props.theme.mangoOrange};
   border-radius: 5px;
   outline: none;
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 const RequestReasonTextArea = styled.textarea`
   padding: 20px;
   width: 800px;
-  font-size: 20px;
-  font-weight: 600;
   border: 2px solid ${(props) => props.theme.mangoOrange};
   border-radius: 5px;
   outline: none;
+  font-size: 20px;
+  font-weight: 600;
   line-height: 24px;
   resize: none;
 `;
@@ -127,21 +127,21 @@ const SubmitRequset = styled.button`
   margin: 20px;
   width: 200px;
   height: 100px;
+  background-color: #fff;
+  border: 3px solid ${(props) => props.theme.mangoOrange};
   border-radius: 20px;
+  color: ${(props) => props.theme.mangoOrange};
   font-size: 36px;
   font-weight: bolder;
   letter-spacing: 3px;
-  color: ${(props) => props.theme.mangoOrange};
-  background-color: #fff;
-  border: 3px solid ${(props) => props.theme.mangoOrange};
   :hover {
-    cursor: pointer;
-    color: #fff;
     background-color: ${(props) => props.theme.mangoOrange};
     border: none;
+    color: #fff;
+    cursor: pointer;
   }
   :disabled {
-    cursor: default;
     opacity: 0.3;
+    cursor: default;
   }
 `;

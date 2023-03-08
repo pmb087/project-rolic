@@ -52,11 +52,11 @@ const WishListHeader = styled.div`
 `;
 
 const WishListHeaderText = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
   margin: 10px;
   padding: 5px 5px 5px 15px;
   color: #404040;
+  font-size: 36px;
+  font-weight: bold;
 `;
 
 const WishStoreContainer = styled.div`

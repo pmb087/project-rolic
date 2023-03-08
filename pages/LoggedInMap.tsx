@@ -76,13 +76,13 @@ const LeftContainer = styled.aside`
 `;
 
 const RightContainer = styled.aside`
+  overflow-y: scroll;
   padding: 20px;
-  box-shadow: 0 0 3px 3px ${(props) => props.theme.lightGray};
-  border-radius: 5px 0 0 5px;
   max-width: 460px;
   min-width: 460px;
   max-height: 100vh;
-  overflow-y: scroll;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 0 3px 3px ${(props) => props.theme.lightGray};
 
   ::-webkit-scrollbar {
     width: 8px;
@@ -90,7 +90,6 @@ const RightContainer = styled.aside`
   ::-webkit-scrollbar-thumb {
     height: 30%;
     background: ${(props) => props.theme.mangoOrange};
-
     border-radius: 10px;
   }
   ::-webkit-scrollbar-track {

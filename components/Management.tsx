@@ -39,17 +39,17 @@ type PostHeader = {
 const ManagementContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   margin: 20px;
+  width: 100%;
 `;
 
 const ManagementTitle = styled.div`
   margin: 20px;
   padding: 20px 20px 20px 50px;
   border-bottom: 2px solid ${(props) => props.theme.normalGray};
+  color: ${(props) => props.theme.darkGray};
   font-size: 30px;
   font-weight: bolder;
-  color: ${(props) => props.theme.darkGray};
 `;
 
 const ManagementPostContainer = styled.div`
@@ -65,9 +65,9 @@ const RequestPostLinkContainer = styled.div<PostHeader>`
   width: 100%;
   height: 50px;
   border-bottom: 1px solid ${(props) => props.theme.lightGray};
+  color: #444444;
   font-size: 20px;
   font-weight: 600;
-  color: #444444;
   :hover {
     background-color: ${({ header }) => (header ? 'none' : '#ff904d1a')};
   }

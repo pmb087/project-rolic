@@ -70,17 +70,17 @@ const ImageWrap = styled.div<Theme>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
   width: 180px;
   height: 112.5px;
-  border-radius: 20px;
+  background-color: #fff;
   border: 3px solid
     ${({ themeColor, isNoData }) => (isNoData ? '#a0a0a0' : themeColor)};
+  border-radius: 20px;
 `;
 
 const NoLinkWrap = styled.button`
-  cursor: pointer;
-  outline: none;
   background-color: #fff;
   border: none;
+  outline: none;
+  cursor: pointer;
 `;

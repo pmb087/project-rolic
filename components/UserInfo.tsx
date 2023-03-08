@@ -44,9 +44,9 @@ const UserInfoContainer = styled.div`
 `;
 
 const WelcomeText = styled.h2`
+  margin-right: 15px;
+  color: black;
   font-size: 30px;
   font-weight: bolder;
   letter-spacing: 1.2px;
-  color: black;
-  margin-right: 15px;
 `;

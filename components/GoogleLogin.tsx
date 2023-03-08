@@ -42,7 +42,7 @@ function GoogleLogin() {
 export default React.memo(GoogleLogin);
 
 const LoginDiv = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
 `;

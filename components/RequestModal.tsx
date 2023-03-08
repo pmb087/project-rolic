@@ -38,16 +38,16 @@ const RequestModalContainer = styled.div`
 const ModalBox = styled.div`
   width: 500px;
   height: 800px;
-  border-radius: 20px;
   background-color: #fff;
+  border-radius: 20px;
 `;
 
 const ModalHeader = styled.div`
   position: relative;
-  border-bottom: 1px solid #909090;
   display: flex;
   justify-content: center;
   margin: 0 20px;
+  border-bottom: 1px solid #909090;
 `;
 
 const ModalHeaderText = styled.p`
@@ -62,18 +62,18 @@ const ModalCloseButton = styled.button`
   right: 10px;
   width: 20px;
   height: 25px;
+  background-color: #fff;
   border: none;
   outline: none;
-  background-color: #fff;
   font-size: 30px;
   :hover {
-    cursor: pointer;
     color: ${(props) => props.theme.mangoOrange};
+    cursor: pointer;
   }
 `;
 
 const ModalReason = styled.div`
   margin: 20px;
-  line-height: 35px;
   font-size: 30px;
+  line-height: 35px;
 `;

@@ -88,15 +88,15 @@ const GoToMyPage = styled.button`
 
 const TitleText = styled.h1`
   margin: 20px 20px 20px 50px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 36px;
   font-weight: bolder;
-  color: ${(props) => props.theme.darkGray};
 `;
 
 const StoreInfoWrap = styled.div`
-  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
+  align-self: center;
   width: 50%;
   min-width: 680px;
-  align-self: center;
   background-color: #fff;
+  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
 `;

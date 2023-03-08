@@ -181,20 +181,20 @@ function AddStore() {
 export default AddStore;
 
 const AddStoreContainer = styled.div`
-  width: 100%;
-  margin: 20px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  width: 100%;
 `;
 
 const AddStoreHeader = styled.div`
   padding: 20px 20px 20px 50px;
   width: 100%;
+  border-bottom: 2px solid ${(props) => props.theme.normalGray};
+  color: ${(props) => props.theme.darkGray};
   font-size: 30px;
   font-weight: bolder;
-  color: ${(props) => props.theme.darkGray};
-  border-bottom: 2px solid ${(props) => props.theme.normalGray};
 `;
 
 const AddStoreInputContainer = styled.div`
@@ -213,29 +213,29 @@ const AddStoreInputSource = styled.input`
   margin: 20px 0;
   padding: 10px;
   width: 600px;
-  font-size: 18px;
-  font-weight: 600;
   border: 2px solid ${(props) => props.theme.mangoOrange};
   border-radius: 5px;
   outline: none;
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 const AddStoreInputPositionSource = styled(AddStoreInputSource)`
-  width: 290px;
   margin-right: 20px;
+  width: 290px;
 `;
 
 const AddMenu = styled.button`
-  width: 80px;
-  height: 45px;
   margin-left: 20px;
   border: 2px solid ${(props) => props.theme.mangoOrange};
+  width: 80px;
+  height: 45px;
   background-color: #fff;
+  border-radius: 5px;
+  outline: none;
   color: ${(props) => props.theme.mangoOrange};
   font-size: 18px;
   font-weight: 600;
-  outline: none;
-  border-radius: 5px;
   :hover {
     background-color: ${(props) => props.theme.mangoOrange};
     color: #fff;
@@ -266,39 +266,38 @@ const MenuText = styled.p`
 `;
 const MenuDelete = styled.button`
   margin-left: 10px;
+  background-color: ${(props) => props.theme.mangoOrange};
   border: none;
+  border-radius: 10px;
   outline: none;
   color: #fff;
   font-size: 16px;
   font-weight: bolder;
-  background-color: ${(props) => props.theme.mangoOrange};
-  border-radius: 10px;
 
   :hover {
-    cursor: pointer;
     background-color: #fff;
     color: ${(props) => props.theme.mangoOrange};
+    cursor: pointer;
   }
 `;
 
 const PostStoreDataButton = styled.button`
+  align-self: flex-end;
+  margin-left: 10px;
   width: 160px;
   height: 80px;
-  margin-left: 10px;
-  border: none;
+  background-color: ${(props) => props.theme.mangoOrange};
+  border: 3px solid ${(props) => props.theme.mangoOrange};
+  border-radius: 10px;
   outline: none;
   color: #fff;
   font-size: 24px;
   font-weight: bolder;
-  background-color: ${(props) => props.theme.mangoOrange};
-  border: 3px solid ${(props) => props.theme.mangoOrange};
-  border-radius: 10px;
-  align-self: flex-end;
 
   :hover {
-    cursor: pointer;
     background-color: #fff;
     color: ${(props) => props.theme.mangoOrange};
+    cursor: pointer;
   }
 
   :disabled {

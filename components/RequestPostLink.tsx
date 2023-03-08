@@ -58,9 +58,9 @@ const RequestPostLinkContainer = styled.div<PostHeader>`
   width: 100%;
   height: 50px;
   border-bottom: 1px solid ${(props) => props.theme.lightGray};
+  color: #444444;
   font-size: 20px;
   font-weight: 600;
-  color: #444444;
   :hover {
     background-color: ${({ header }) => (header ? 'none' : '#ff904d1a')};
   }
@@ -71,17 +71,17 @@ const RequestPostTime = styled.p`
 `;
 
 const DeleteButton = styled.button`
+  margin-right: 10px;
   width: 50px;
   min-width: 50px;
   height: 30px;
-  margin-right: 10px;
-  border: 2px solid ${(props) => props.theme.mangoOrange};
   background-color: #fff;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
+  border-radius: 5px;
+  outline: none;
   color: ${(props) => props.theme.mangoOrange};
   font-size: 18px;
   font-weight: 600;
-  outline: none;
-  border-radius: 5px;
   :hover {
     background-color: ${(props) => props.theme.mangoOrange};
     color: #fff;

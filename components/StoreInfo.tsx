@@ -54,18 +54,18 @@ const StoreName = styled.div`
   justify-content: center;
   margin: 35px 0 50px;
   width: 100%;
-  font-size: 50px;
   color: ${(props) => props.theme.darkGray};
+  font-size: 50px;
   font-weight: bold;
 `;
 
 const ClickLinkContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 34px;
   font-weight: bold;
-  color: ${(props) => props.theme.darkGray};
-  margin-bottom: 10px;
   letter-spacing: 1.2px;
 `;
 

@@ -26,22 +26,22 @@ export default Info;
 const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   margin-bottom: 40px;
+  width: 100%;
 `;
 
 const InfoTitle = styled.h1`
+  margin-bottom: 15px;
+  color: ${(props) => props.theme.darkGray};
   font-size: 34px;
   font-weight: bold;
-  color: ${(props) => props.theme.darkGray};
-  margin-bottom: 15px;
   letter-spacing: 1.2px;
 `;
 
 const InfoContent = styled.p`
+  margin-bottom: 5px;
+  color: ${(props) => props.theme.normalGray};
   font-size: 20px;
   font-weight: bold;
-  color: ${(props) => props.theme.normalGray};
-  margin-bottom: 5px;
   letter-spacing: 1px;
 `;

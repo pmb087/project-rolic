@@ -97,17 +97,17 @@ type CurrentMenu = {
 const MyPageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px;
   width: 100%;
   min-height: 100vh;
-  padding: 20px;
   background-color: #f0f0f0;
 `;
 
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
-  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
+  box-shadow: 0 0 6px 6px rgba(0, 0, 0, 0.2);
 `;
 
 const ContentAside = styled.aside`
@@ -115,24 +115,24 @@ const ContentAside = styled.aside`
   flex-direction: column;
   align-items: center;
   padding-top: 150px;
-  width: 300px;
   min-width: 160px;
+  width: 300px;
   background-color: ${(props) => props.theme.opacityOrange};
 `;
 
 const AsideMenu = styled.div<CurrentMenu>`
   display: flex;
+  align-items: center;
   margin-bottom: 10px;
   padding-left: 40px;
-  font-size: ${({ currentMenu }) => (currentMenu ? '30px' : '22px')};
-  font-weight: ${({ currentMenu }) => (currentMenu ? 'bolder' : 'bold')};
-  align-items: center;
   width: calc(100% + 10px);
   height: 70px;
   background-color: ${({ currentMenu }) => (currentMenu ? '#fff' : 'none')};
   box-shadow: ${({ currentMenu }) =>
     currentMenu ? '0 0 2px 2px rgba(0, 0, 0, 0.2)' : 'none'};
   color: ${(props) => props.theme.darkGray};
+  font-size: ${({ currentMenu }) => (currentMenu ? '30px' : '22px')};
+  font-weight: ${({ currentMenu }) => (currentMenu ? 'bolder' : 'bold')};
   :hover {
     cursor: pointer;
   }

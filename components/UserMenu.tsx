@@ -30,43 +30,43 @@ export default UserMenu;
 const UserMenuWrap = styled.div`
   position: absolute;
   z-index: 5;
-  right: 115px;
   bottom: -10px;
+  right: 115px;
 `;
 
 const UserMenuContainer = styled.div`
-  box-shadow: 0px 0px 6px 0px #00000040;
-  background: #fff;
-  border-radius: 10px;
+  position: absolute;
+  z-index: 6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  z-index: 6;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 0px #00000040;
 `;
 
 const Triangle = styled.div`
-  width: 30px;
-  background-color: #fff;
-  height: 30px;
-  border-radius: 4px;
-  box-shadow: -4px 4px 2px -2px rgb(178 178 178 / 0.3);
-  transform: rotate(135deg);
   position: absolute;
   z-index: 7;
   left: 60px;
   top: -13px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: -4px 4px 2px -2px rgb(178 178 178 / 0.3);
+  transform: rotate(135deg);
 `;
 
 const MenuBlock = styled.button`
   padding: 25px 0;
   width: 150px;
-  font-size: 24px;
-  outline: none;
+  background-color: #fff;
   border: none;
   border-radius: 10px;
-  background-color: #fff;
+  outline: none;
+  font-size: 24px;
 
   :hover {
     color: ${(props) => props.theme.mangoOrange};
