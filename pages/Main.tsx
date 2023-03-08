@@ -2,8 +2,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Image from 'next/image';
-import GoogleLogin from '@/components/GoogleLogin';
 import { Url } from 'url';
+import GoogleLogin from '@/components/GoogleLogin';
 import useRedirect from '@/utils/hooks/useRedirect';
 
 function Main() {

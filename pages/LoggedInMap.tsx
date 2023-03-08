@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Url } from 'url';
 import NotSelected from '@/components/NotSelected';
 import LoggedInStoreInfo from '@/components/LoggedInStoreInfo';
 import Navbar from '@/components/Navbar';
-import { Url } from 'url';
 import StoreService from '@/utils/service/StoreService';
 import { StoreResponse } from '@/utils/types/index';
 import onLoadKakaoMap from '@/utils/func/onLoadKakaoMap';
