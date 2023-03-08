@@ -33,7 +33,7 @@ const InfoWrap = styled.div`
 const InfoTitle = styled.h1`
   font-size: 34px;
   font-weight: bold;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   margin-bottom: 15px;
   letter-spacing: 1.2px;
 `;
@@ -41,7 +41,7 @@ const InfoTitle = styled.h1`
 const InfoContent = styled.p`
   font-size: 20px;
   font-weight: bold;
-  color: #808080;
+  color: ${(props) => props.theme.normalGray};
   margin-bottom: 5px;
   letter-spacing: 1px;
 `;

@@ -55,7 +55,7 @@ const StoreName = styled.div`
   margin: 35px 0 50px;
   width: 100%;
   font-size: 50px;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   font-weight: bold;
 `;
 
@@ -64,7 +64,7 @@ const ClickLinkContainer = styled.div`
   flex-direction: column;
   font-size: 34px;
   font-weight: bold;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   margin-bottom: 10px;
   letter-spacing: 1.2px;
 `;

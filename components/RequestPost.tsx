@@ -9,8 +9,8 @@ interface Props {
 function RequestPost({ title, content }: Props) {
   return (
     <RequestPostContainer>
-      <RequestPostTitle>{title}</RequestPostTitle>
-      <RequestPostContent>{content}</RequestPostContent>
+      <h1>{title}</h1>
+      <div>{content}</div>
     </RequestPostContainer>
   );
 }
@@ -21,7 +21,3 @@ const RequestPostContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const RequestPostTitle = styled.h1``;
-
-const RequestPostContent = styled.div``;

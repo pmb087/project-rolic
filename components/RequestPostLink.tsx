@@ -57,7 +57,7 @@ const RequestPostLinkContainer = styled.div<PostHeader>`
   align-items: center;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid ${(props) => props.theme.lightGray};
   font-size: 20px;
   font-weight: 600;
   color: #444444;
@@ -75,15 +75,15 @@ const DeleteButton = styled.button`
   min-width: 50px;
   height: 30px;
   margin-right: 10px;
-  border: 2px solid #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
   background-color: #fff;
-  color: #ff904d;
+  color: ${(props) => props.theme.mangoOrange};
   font-size: 18px;
   font-weight: 600;
   outline: none;
   border-radius: 5px;
   :hover {
-    background-color: #ff904d;
+    background-color: ${(props) => props.theme.mangoOrange};
     color: #fff;
     cursor: pointer;
   }
@@ -92,7 +92,7 @@ const DeleteButton = styled.button`
 const RequestPostName = styled.p`
   width: calc(100% - 120px - 120px);
   :hover {
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
     cursor: pointer;
   }
 `;

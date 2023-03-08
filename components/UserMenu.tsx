@@ -69,7 +69,7 @@ const MenuBlock = styled.button`
   background-color: #fff;
 
   :hover {
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
     cursor: pointer;
   }
 `;

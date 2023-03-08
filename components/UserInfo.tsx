@@ -47,6 +47,6 @@ const WelcomeText = styled.h2`
   font-size: 30px;
   font-weight: bolder;
   letter-spacing: 1.2px;
-  color: #000;
+  color: black;
   margin-right: 15px;
 `;

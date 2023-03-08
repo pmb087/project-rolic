@@ -69,7 +69,7 @@ const StoreName = styled.div`
   margin: 35px 0 50px;
   width: 100%;
   font-size: 50px;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   font-weight: bold;
 `;
 
@@ -78,7 +78,7 @@ const ClickLinkContainer = styled.div`
   flex-direction: column;
   font-size: 34px;
   font-weight: bold;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   margin-bottom: 10px;
   letter-spacing: 1.2px;
 `;
@@ -97,14 +97,15 @@ const StoreLike = styled.div<StoreLikeType>`
   width: calc(100% - 100px);
   height: 60px;
   border-radius: 15px;
-  border: 3px solid #ff904d;
-  background-color: ${({ storeLike }) => (storeLike ? '#ff904d' : '#fff')};
+  border: 3px solid ${(props) => props.theme.mangoOrange};
+  background-color: ${({ storeLike, theme }) =>
+    storeLike ? theme.mangoOrange : '#fff'};
   font-size: 24px;
   font-weight: bolder;
-  color: ${({ storeLike }) => (!storeLike ? '#ff904d' : '#fff')};
+  color: ${({ storeLike, theme }) => (!storeLike ? theme.mangoOrange : '#fff')};
   letter-spacing: 3px;
   :hover {
     background-color: #ffccac;
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
   }
 `;

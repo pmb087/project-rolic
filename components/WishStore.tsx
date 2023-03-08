@@ -37,10 +37,10 @@ const WishStoreContainer = styled.div`
   padding: 15px;
   margin: 10px;
   background-color: #f0f0f0;
-  border: 3px solid #ff904dbf;
+  border: 3px solid ${(props) => props.theme.opacityOrange};
   border-radius: 10px;
   :hover {
-    background-color: #ff904dbf;
+    background-color: ${(props) => props.theme.opacityOrange};
     cursor: pointer;
   }
 `;

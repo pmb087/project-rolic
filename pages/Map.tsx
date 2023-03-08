@@ -68,7 +68,7 @@ const LeftContainer = styled.aside`
 
 const RightContainer = styled.aside`
   padding: 20px;
-  box-shadow: 0 0 3px 3px #c0c0c0;
+  box-shadow: 0 0 3px 3px ${(props) => props.theme.lightGray};
   border-radius: 5px 0 0 5px;
   max-width: 460px;
   min-width: 460px;
@@ -80,7 +80,7 @@ const RightContainer = styled.aside`
   }
   ::-webkit-scrollbar-thumb {
     height: 30%;
-    background: #ff904d;
+    background: ${(props) => props.theme.mangoOrange};
 
     border-radius: 10px;
   }
@@ -92,5 +92,5 @@ const RightContainer = styled.aside`
 const MapWrap = styled.div`
   width: 940px;
   height: 910px;
-  border: 2px solid #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
 `;

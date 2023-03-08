@@ -79,8 +79,8 @@ const GoToMyPage = styled.button`
   border-radius: 25px;
   font-size: 50px;
   :hover {
-    background-color: #ff904d;
-    border: 3px solid #ff904d;
+    background-color: ${(props) => props.theme.mangoOrange};
+    border: 3px solid ${(props) => props.theme.mangoOrange};
     color: #fff;
     cursor: pointer;
   }
@@ -90,7 +90,7 @@ const TitleText = styled.h1`
   margin: 20px 20px 20px 50px;
   font-size: 36px;
   font-weight: bolder;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
 `;
 
 const StoreInfoWrap = styled.div`

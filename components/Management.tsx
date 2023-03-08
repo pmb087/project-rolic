@@ -46,10 +46,10 @@ const ManagementContainer = styled.div`
 const ManagementTitle = styled.div`
   margin: 20px;
   padding: 20px 20px 20px 50px;
-  border-bottom: 2px solid #808080;
+  border-bottom: 2px solid ${(props) => props.theme.normalGray};
   font-size: 30px;
   font-weight: bolder;
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
 `;
 
 const ManagementPostContainer = styled.div`
@@ -64,7 +64,7 @@ const RequestPostLinkContainer = styled.div<PostHeader>`
   align-items: center;
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid ${(props) => props.theme.lightGray};
   font-size: 20px;
   font-weight: 600;
   color: #444444;
@@ -77,7 +77,7 @@ const RequestPostNumberHeader = styled.p`
   width: 120px;
   text-align: center;
   :hover {
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
     cursor: pointer;
   }
 `;

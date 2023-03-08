@@ -105,7 +105,7 @@ const StoreNameInput = styled.input`
   width: 400px;
   font-size: 18px;
   font-weight: 600;
-  border: 2px solid #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
   border-radius: 5px;
   outline: none;
 `;
@@ -115,7 +115,7 @@ const RequestReasonTextArea = styled.textarea`
   width: 800px;
   font-size: 20px;
   font-weight: 600;
-  border: 2px solid #ff904d;
+  border: 2px solid ${(props) => props.theme.mangoOrange};
   border-radius: 5px;
   outline: none;
   line-height: 24px;
@@ -131,13 +131,13 @@ const SubmitRequset = styled.button`
   font-size: 36px;
   font-weight: bolder;
   letter-spacing: 3px;
-  color: #ff904d;
+  color: ${(props) => props.theme.mangoOrange};
   background-color: #fff;
-  border: 3px solid #ff904d;
+  border: 3px solid ${(props) => props.theme.mangoOrange};
   :hover {
     cursor: pointer;
     color: #fff;
-    background-color: #ff904d;
+    background-color: ${(props) => props.theme.mangoOrange};
     border: none;
   }
   :disabled {

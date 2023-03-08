@@ -32,7 +32,7 @@ const RequestModalContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #505050bf;
+  background-color: rgba(${(props) => props.theme.darkGray}, 0.75);
 `;
 
 const ModalBox = styled.div`
@@ -68,7 +68,7 @@ const ModalCloseButton = styled.button`
   font-size: 30px;
   :hover {
     cursor: pointer;
-    color: #ff904d;
+    color: ${(props) => props.theme.mangoOrange};
   }
 `;
 

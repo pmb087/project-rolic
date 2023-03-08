@@ -9,7 +9,7 @@ interface Props {
 }
 
 function ClickLink({ type, link }: Props) {
-  const theme = type === 'mango' ? '#ff914d' : '#0ac7ce';
+  const theme = type === 'mango' ? '#ff904d' : '#0ac7ce';
   const isNoData = link === 'no_data';
 
   const noDataClick = () => {

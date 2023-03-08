@@ -117,7 +117,7 @@ const ContentAside = styled.aside`
   padding-top: 150px;
   width: 300px;
   min-width: 160px;
-  background-color: #ff904dbf;
+  background-color: ${(props) => props.theme.opacityOrange};
 `;
 
 const AsideMenu = styled.div<CurrentMenu>`
@@ -132,7 +132,7 @@ const AsideMenu = styled.div<CurrentMenu>`
   background-color: ${({ currentMenu }) => (currentMenu ? '#fff' : 'none')};
   box-shadow: ${({ currentMenu }) =>
     currentMenu ? '0 0 2px 2px rgba(0, 0, 0, 0.2)' : 'none'};
-  color: #505050;
+  color: ${(props) => props.theme.darkGray};
   :hover {
     cursor: pointer;
   }
