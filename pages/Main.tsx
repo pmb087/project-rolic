@@ -1,14 +1,14 @@
 import React from 'react';
-import Image from 'next/image';
-import styled from 'styled-components';
-import { Url } from 'url';
 import { useRouter } from 'next/router';
-import GoogleLogin from '../components/GoogleLogin';
-import useRedirect from '../utils/hooks/useRedirect';
+import styled from 'styled-components';
+import Image from 'next/image';
+import GoogleLogin from 'components/GoogleLogin';
+import { Url } from 'url';
+import useRedirect from 'utils/hooks/useRedirect';
 
 function Main() {
-  const {push} = useRouter();
-  useRedirect('/LoggedInMap' as unknown as Url);  
+  const { push } = useRouter();
+  useRedirect('/LoggedInMap' as unknown as Url);
 
   return (
     <MainContainer>

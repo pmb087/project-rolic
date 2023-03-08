@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import { StoreResponse } from '../utils/types';
-import WishStore from './WishStore';
-import useGetUser from '../utils/hooks/useGetUser';
+import Image from 'next/image';
+import WishStore from 'components/WishStore';
+import { StoreResponse } from 'utils/types';
+import useGetUser from 'utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];

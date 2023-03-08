@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
+import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import jwt_decode from 'jwt-decode';
-import styled from 'styled-components';
-import useScript from '../utils/hooks/useScript';
-import { GApiResponse, DecodedResponse } from '../utils/types/index';
-import UserService from '../utils/service/UserService';
-import onLoadGoogleLogin from '../utils/func/onLoadGoogleLogin';
-import LocalStorageService from '../utils/service/LocalStorageService';
+import useScript from 'utils/hooks/useScript';
+import { GApiResponse, DecodedResponse } from 'utils/types/index';
+import UserService from 'utils/service/UserService';
+import onLoadGoogleLogin from 'utils/func/onLoadGoogleLogin';
+import LocalStorageService from 'utils/service/LocalStorageService';
 
 declare global {
   interface Window {

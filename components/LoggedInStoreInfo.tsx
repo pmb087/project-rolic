@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Info from './Info';
-import ClickLink from './ClickLink';
-import { StoreResponse, UserResponse } from '../utils/types/index';
-import useLikeStore from '../utils/hooks/useLikeStore';
+import Info from 'components/Info';
+import ClickLink from 'components/ClickLink';
+import { StoreResponse, UserResponse } from 'utils/types/index';
+import useLikeStore from 'utils/hooks/useLikeStore';
 
 interface Props {
   store: StoreResponse;

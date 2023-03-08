@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import useGetRequest from '../utils/hooks/useGetRequest';
-import { RequestGetContent } from '../utils/types';
-import RequestPostLink from './RequestPostLink';
+import RequestPostLink from 'components/RequestPostLink';
+import useGetRequest from 'utils/hooks/useGetRequest';
+import { RequestGetContent } from 'utils/types';
 
 function Management() {
   const { requestData, setRequestData } = useGetRequest();

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Url } from 'url';
-import AddStore from '../components/AddStore';
-import Management from '../components/Management';
-import Navbar from '../components/Navbar';
-import Request from '../components/Request';
-import WishList from '../components/WishList';
-import StoreService from '../utils/service/StoreService';
-import { StoreResponse } from '../utils/types';
-import useRedirect from '../utils/hooks/useRedirect';
-import useGetUser from '../utils/hooks/useGetUser';
+import AddStore from 'components/AddStore';
+import Management from 'components/Management';
+import Navbar from 'components/Navbar';
+import Request from 'components/Request';
+import WishList from 'components/WishList';
+import StoreService from 'utils/service/StoreService';
+import { StoreResponse } from 'utils/types';
+import useRedirect from 'utils/hooks/useRedirect';
+import useGetUser from 'utils/hooks/useGetUser';
 
 type SelectedMenu =
   | 'WISH_LIST'
@@ -21,7 +21,7 @@ interface Props {
 }
 
 function MyPage({ storeResponse }: Props) {
-  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');  
+  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>('WISH_LIST');
   const handleSelectedMenu = (menu: SelectedMenu) => setSelectedMenu(menu);
   const { WISH_LIST, REQUEST_STORE, MANAGEMENT_REQUEST, ADD_STORE } = {
     WISH_LIST: selectedMenu === 'WISH_LIST',
@@ -29,8 +29,8 @@ function MyPage({ storeResponse }: Props) {
     MANAGEMENT_REQUEST: selectedMenu === 'MANAGEMENT_REQUEST',
     ADD_STORE: selectedMenu === 'ADD_STORE'
   };
-  
-  const {isAdmin, currentUserInfo, getUserInfo} = useGetUser(false);
+
+  const { isAdmin, currentUserInfo, getUserInfo } = useGetUser(false);
   useRedirect('/Map' as unknown as Url, getUserInfo);
 
   return (

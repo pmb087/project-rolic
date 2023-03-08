@@ -1,6 +1,7 @@
-import React, { useRouter } from 'next/router';
+import React from 'react';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import LocalStorageService from '../utils/service/LocalStorageService';
+import LocalStorageService from 'utils/service/LocalStorageService';
 
 function UserMenu() {
   const { pathname, push } = useRouter();

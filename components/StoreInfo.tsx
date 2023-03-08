@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
 import styled from 'styled-components';
-import Info from './Info';
-import ClickLink from './ClickLink';
-import { StoreResponse } from '../utils/types/index';
+import Image from 'next/image';
+import Info from 'components/Info';
+import ClickLink from 'components/ClickLink';
+import { StoreResponse } from 'utils/types/index';
 
 interface Props {
   store: StoreResponse;

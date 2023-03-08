@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import formatDate from '../utils/func/formatDate';
-import useHandleInput from '../utils/hooks/useHandleInput';
-import StoreService from '../utils/service/StoreService';
+import formatDate from 'utils/func/formatDate';
+import useHandleInput from 'utils/hooks/useHandleInput';
+import StoreService from 'utils/service/StoreService';
 
 function Request() {
   const { input, handleInput, setInput } = useHandleInput();

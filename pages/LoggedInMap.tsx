@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import NotSelected from 'components/NotSelected';
+import LoggedInStoreInfo from 'components/LoggedInStoreInfo';
+import Navbar from 'components/Navbar';
 import { Url } from 'url';
-import StoreService from '../utils/service/StoreService';
-import { StoreResponse } from '../utils/types/index';
-import NotSelected from '../components/NotSelected';
-import onLoadKakaoMap from '../utils/func/onLoadKakaoMap';
-import useScript from '../utils/hooks/useScript';
-import LoggedInStoreInfo from '../components/LoggedInStoreInfo';
-import Navbar from '../components/Navbar';
-import useRedirect from '../utils/hooks/useRedirect';
-import useGetUser from '../utils/hooks/useGetUser';
+import StoreService from 'utils/service/StoreService';
+import { StoreResponse } from 'utils/types/index';
+import onLoadKakaoMap from 'utils/func/onLoadKakaoMap';
+import useScript from 'utils/hooks/useScript';
+import useRedirect from 'utils/hooks/useRedirect';
+import useGetUser from 'utils/hooks/useGetUser';
 
 interface Props {
   storeResponse: StoreResponse[];

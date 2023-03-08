@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "/Users/pmb08/Desktop/rolic/project-rolic",
     "target": "es5",
     "downlevelIteration": true,
     "lib": ["dom", "dom.iterable", "esnext"],
