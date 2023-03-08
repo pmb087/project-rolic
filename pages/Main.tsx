@@ -2,9 +2,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Image from 'next/image';
-import GoogleLogin from 'components/GoogleLogin';
+import GoogleLogin from '@/components/GoogleLogin';
 import { Url } from 'url';
-import useRedirect from 'utils/hooks/useRedirect';
+import useRedirect from '@/utils/hooks/useRedirect';
 
 function Main() {
   const { push } = useRouter();

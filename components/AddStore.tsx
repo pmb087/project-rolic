@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import StoreService from 'utils/service/StoreService';
-import { AddStoreBody } from 'utils/types';
+import StoreService from '@/utils/service/StoreService';
+import { AddStoreBody } from '@/utils/types';
 
 function AddStore() {
   const [storeMenu, setStoreMenu] = useState<string[]>([]);

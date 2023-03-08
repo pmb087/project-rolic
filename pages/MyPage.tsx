@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Url } from 'url';
-import AddStore from 'components/AddStore';
-import Management from 'components/Management';
-import Navbar from 'components/Navbar';
-import Request from 'components/Request';
-import WishList from 'components/WishList';
-import StoreService from 'utils/service/StoreService';
-import { StoreResponse } from 'utils/types';
-import useRedirect from 'utils/hooks/useRedirect';
-import useGetUser from 'utils/hooks/useGetUser';
+import AddStore from '@/components/AddStore';
+import Management from '@/components/Management';
+import Navbar from '@/components/Navbar';
+import Request from '@/components/Request';
+import WishList from '@/components/WishList';
+import StoreService from '@/utils/service/StoreService';
+import { StoreResponse } from '@/utils/types';
+import useRedirect from '@/utils/hooks/useRedirect';
+import useGetUser from '@/utils/hooks/useGetUser';
 
 type SelectedMenu =
   | 'WISH_LIST'

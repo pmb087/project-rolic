@@ -1,11 +1,11 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import Navbar from 'components/Navbar';
-import StoreInfoLarge from 'components/StoreInfoLarge';
-import StoreService from 'utils/service/StoreService';
-import { StoreResponse } from 'utils/types';
-import useGetUser from 'utils/hooks/useGetUser';
+import Navbar from '@/components/Navbar';
+import StoreInfoLarge from '@/components/StoreInfoLarge';
+import StoreService from '@/utils/service/StoreService';
+import { StoreResponse } from '@/utils/types';
+import useGetUser from '@/utils/hooks/useGetUser';
 
 interface Props {
   storeData: StoreResponse;

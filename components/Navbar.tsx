@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import GoogleLogin from 'components/GoogleLogin';
-import UserInfo from 'components/UserInfo';
-import { UserResponse } from 'utils/types';
+import GoogleLogin from '@/components/GoogleLogin';
+import UserInfo from '@/components/UserInfo';
+import { UserResponse } from '@/utils/types';
 
 interface Props {
   currentUserInfo?: UserResponse;
