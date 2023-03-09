@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import client from './CustomAxios';
 import {
   AddStoreBody,
   RequestContent,
@@ -8,39 +9,27 @@ import {
 
 class Store {
   getAllStore(): Promise<AxiosResponse<StoreResponse[]>> {
-    return axios.get('https://project-rolic-json-server.herokuapp.com/store');
+    return client.get('/store');
   }
 
   getStore(id: number): Promise<AxiosResponse<StoreResponse>> {
-    return axios.get(
-      `https://project-rolic-json-server.herokuapp.com/store/${id}`
-    );
+    return client.get(`/store/${id}`);
   }
 
   request(content: RequestContent): void {
-    axios.post(
-      'https://project-rolic-json-server.herokuapp.com/requests',
-      content
-    );
+    client.post('/requests', content);
   }
 
   getRequest(): Promise<AxiosResponse<RequestGetContent[]>> {
-    return axios.get(
-      'https://project-rolic-json-server.herokuapp.com/requests'
-    );
+    return client.get('/requests');
   }
 
   deleteRequest(id: number): void {
-    axios.delete(
-      `https://project-rolic-json-server.herokuapp.com/requests/${id}`
-    );
+    client.delete(`/requests/${id}`);
   }
 
   addStore(content: AddStoreBody): void {
-    axios.post(
-      'https://project-rolic-json-server.herokuapp.com/store',
-      content
-    );
+    client.post('/store', content);
   }
 }
 
