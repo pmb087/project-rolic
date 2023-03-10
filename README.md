@@ -246,7 +246,7 @@ function Info({ title, content }: Props) {
         <InfoContent>{content}</InfoContent>
       ) : (
         content.map((item: string) => (
-          <InfoContent ntent nfoContent key={item}>
+          <InfoContent key={item}>
             {item}
           </InfoContent>
         ))
