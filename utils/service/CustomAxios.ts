@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://project-rolic-json-server.herokuapp.com'
+  baseURL: 'https://architectural-bird-psmportfolio.koyeb.app'
 });
 
 export default client;
